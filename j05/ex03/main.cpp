@@ -10,40 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include <iostream>
+#include "Intern.hpp"
 
-int	main() {
+int	main(void)
+{
+	Intern		intern;
+	Form			*shrubbery;
+	Form			*robotomy;
+	Form			*pardon;
 
-	try {
-		Bureaucrat toto(std::string("Toto"), 2);
-		std::cout << toto << std::endl;
-		toto.incGrade(); 
-		std::cout << toto << std::endl;
-		toto.incGrade();
-	}
-	catch (std::exception& e) {
-		std::cout << "Fatal: " << e.what() << std::endl;
-	}
-
-
-	try {
-		Bureaucrat tata(std::string("Tata"), 149);
-		std::cout << tata << std::endl;
-		tata.decGrade();
-		std::cout << tata << std::endl;
-		tata.decGrade();
-
-	} catch (std::exception& e) {
-		std::cout << "Fatal: " << e.what() << std::endl;
-	}
-
-	try {
-		Bureaucrat titi(std::string("Titi"), 0);
-		std::cout << titi << std::endl;
-	} catch (std::exception& e) {
-		std::cout << "Fatal: " << e.what() << std::endl;
-	}
-
-	return 0;
+	shrubbery = intern.makeForm("Shrubbery Creation", "King Arthur");
+	robotomy = intern.makeForm("Robotomy Request", "Bender");
+	pardon = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox")
+	intern.makeForm("Exercice Prefilled", "Student");
+	return (0);
 }
