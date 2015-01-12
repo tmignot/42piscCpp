@@ -47,7 +47,7 @@ int	main() {
 
 
   try {
-    Form form("Authorisation prealable aux authorisations temporaires", 50, false);
+    Form form("Authorisation prealable aux authorisations temporaires", 50, 50, false);
 		Bureaucrat titi(std::string("Titi"), 1);
     titi.signForm(form);
 	} catch (std::exception& e) {
@@ -55,7 +55,7 @@ int	main() {
 	}
 
   try {
-    Form form("Authorisation prealable aux authorisations temporaires", 50, false);
+    Form form("Authorisation prealable aux authorisations temporaires", 50, 50, false);
 		Bureaucrat titi(std::string("Titi"), 80);
     titi.signForm(form);
 	} catch (std::exception& e) {
@@ -63,7 +63,7 @@ int	main() {
 	}
 
   try {
-    Form form("Authorisation prealable aux authorisations temporaires", 0, true);
+    Form form("Authorisation prealable aux authorisations temporaires", 0, 0, true);
 	} catch (std::exception& e) {
 		std::cout << "Fatal: " << e.what() << std::endl;
 	}

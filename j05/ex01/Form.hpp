@@ -24,16 +24,18 @@ class Form {
   private:
     std::string   _name;
     bool          _signed;
-    unsigned int  _grade;
+    unsigned int  _gradeSign;
+	unsigned int  _gradeExec;
 
   public:
     Form();
     Form(Form const & form);
-    Form(std::string const&, unsigned int, bool);
+    Form(std::string const&, unsigned int, unsigned int, bool);
     Form & operator=(Form const & form);
     ~Form();
 
-    unsigned int  getGrade() const;
+    unsigned int  getGradeSign() const;
+    unsigned int  getGradeEx() const;
     bool          getSigned() const;
     std::string   getName() const;
 
