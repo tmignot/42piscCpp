@@ -5,6 +5,8 @@
 #include <iostream>
 #include <exception>
 
+class Form;
+
 class Bureaucrat {
 
 	private :
@@ -21,6 +23,8 @@ class Bureaucrat {
 		Bureaucrat(std::string const&, unsigned int);
 		~Bureaucrat();
 
+		void            signForm(Form & form);
+		void			executeForm(Form & form);
 
 		std::string			getName() const;
 		unsigned int		getGrade() const;

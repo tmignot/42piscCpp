@@ -12,7 +12,7 @@ class ShrubberyCreationForm : public Form {
 
 		ShrubberyCreationForm();
 		ShrubberyCreationForm(ShrubberyCreationForm const&);
-		ShrubberyCreationForm& operator=(ShruberryCreationForm const&);
+		ShrubberyCreationForm& operator=(ShrubberyCreationForm const&);
 
 	public :
 
