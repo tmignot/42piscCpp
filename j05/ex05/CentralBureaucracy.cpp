@@ -37,6 +37,7 @@ CentralBureaucracy                    &CentralBureaucracy::operator=(CentralBure
     for (int i = 0; i < 20; i++)
         this->offices[i] = bureau.offices[i];
     this->targets = bureau.targets;
+    this->waiting = bureau.waiting;
     return (*this);
 }
 
