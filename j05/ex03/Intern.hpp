@@ -15,7 +15,7 @@
 
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
+#include "PresidentialPardonForm.hpp"
 
 class Intern
 {
@@ -23,8 +23,8 @@ class Intern
 		Intern(void);
 		Intern(Intern const&);
 		~Intern(void);
-		Intern			&Intern::operator=(Intern const&);
-		Form			*Intern::MakeForm(std::string, std::string);
+		Intern			&operator=(Intern const&);
+		Form			*MakeForm(std::string, std::string);
 };
 
 #endif

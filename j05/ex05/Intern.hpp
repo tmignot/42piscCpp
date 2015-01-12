@@ -6,7 +6,7 @@
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:29:47 by jwoodrow         ###   ########.fr       */
+/*   Updated: 2015/01/12 17:30:24 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ class Intern
 		~Intern(void);
 		Intern			&Intern::operator=(Intern const&);
 		Form			*Intern::MakeForm(std::string, std::string);
-}
+};
 
 #endif

@@ -19,5 +19,3 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void	execute(Bureaucrat const &) {}
-
-#endif

@@ -19,5 +19,3 @@ PresidentialPardonForm::PresidentialPardonForm(std::string const& target)
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void	execute(Bureaucrat const &) {}
-
-#endif

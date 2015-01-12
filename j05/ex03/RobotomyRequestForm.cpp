@@ -19,5 +19,3 @@ RobotomyRequestForm::RobotomyRequestForm(std::string const& target)
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void	execute(Bureaucrat const &) {}
-
-#endif
