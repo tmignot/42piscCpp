@@ -6,7 +6,7 @@
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 16:03:15 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:09:27 by jwoodrow         ###   ########.fr       */
+/*   Updated: 2015/01/12 17:29:57 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Intern::Intern(void)
 {
 }
 
-Intern::Intern(Intern &intern)
+Intern::Intern(Intern const &intern)
 {
 	*this = intern;
 }
@@ -25,8 +25,9 @@ Intern::~Intern(void)
 {
 }
 
-Intern			&Intern::operator=(Intern &intern)
+Intern			&Intern::operator=(Intern const &intern)
 {
+	return (*this);
 }
 
 Form			*Intern::MakeForm(std::string request, std::string demander)
