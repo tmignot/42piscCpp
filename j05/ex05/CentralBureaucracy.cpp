@@ -47,7 +47,6 @@ void                                CentralBureaucracy::hire(Bureaucrat &bureauc
 
     if (this->waiting)
     {
-        std::cout << *(this->waiting) << std::endl;
         i = 0;
         while (i < 20 && this->offices[i])
             i++;
