@@ -4,6 +4,10 @@ Intern::Intern(void)
 {
 }
 
+Intern::Intern(Intern const&)
+{
+}
+
 Intern::~Intern(void)
 {
 }

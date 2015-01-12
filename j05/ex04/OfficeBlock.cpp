@@ -8,10 +8,15 @@ OfficeBlock & OfficeBlock::operator=(OfficeBlock const&) { return *this; }
 OfficeBlock::OfficeBlock() : _intern(NULL), _signing(NULL), _executing(NULL) {}
 
 OfficeBlock::OfficeBlock(Intern *intern, Bureaucrat *signing, Bureaucrat *executing)
-: _intern(intern), _signing(signing), _executing(executing)
+: _intern(new Intern(*intern)), _signing(new Bureaucrat(*signing)), _executing(new Bureaucrat(*executing))
 {}
 
-OfficeBlock::~OfficeBlock() {}
+OfficeBlock::~OfficeBlock()
+{
+    delete this->_intern;
+    delete this->_signing;
+    delete this->_executing;
+}
 
 void OfficeBlock::doBureaucracy(std::string form_name, std::string target)
 {

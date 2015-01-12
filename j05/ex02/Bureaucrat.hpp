@@ -15,12 +15,12 @@ class Bureaucrat {
 		unsigned int		_grade;
 
 		Bureaucrat();
-		Bureaucrat(Bureaucrat const&) ;
 		Bureaucrat& operator=(Bureaucrat const&);
 
 	public	:
 
 		Bureaucrat(std::string const&, unsigned int);
+		Bureaucrat(Bureaucrat const&);
 		~Bureaucrat();
 
 		void            signForm(Form & form);

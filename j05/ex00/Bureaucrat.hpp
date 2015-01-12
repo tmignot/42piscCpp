@@ -1,9 +1,11 @@
-#ifndef BUREAUCRAT_H
-#define BUREAUCRAT_H
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <string>
 #include <iostream>
 #include <exception>
+
+class Form;
 
 class Bureaucrat {
 
@@ -13,14 +15,16 @@ class Bureaucrat {
 		unsigned int		_grade;
 
 		Bureaucrat();
-		Bureaucrat(Bureaucrat const&) ;
 		Bureaucrat& operator=(Bureaucrat const&);
 
 	public	:
 
 		Bureaucrat(std::string const&, unsigned int);
+		Bureaucrat(Bureaucrat const&);
 		~Bureaucrat();
 
+		void            signForm(Form & form);
+		void			executeForm(Form & form);
 
 		std::string			getName() const;
 		unsigned int		getGrade() const;
