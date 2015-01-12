@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:15:27 by jwoodrow         ###   ########.fr       */
+/*   Created: 2015/01/12 16:03:55 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:08:26 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_H
-# define INTERN_H
+#ifndef FORM_H
+# define FORM_H
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
+#include "Bureaucrat.hpp"
 
-class Intern
+class Form
 {
-	public:
-		Intern(void);
-		Intern(Intern&);
-		~Intern(void);
-		Intern			&Intern::operator=(Intern&);
-		Form			*Intern::MakeForm(std::string, std::string);
-};
+	private:
+		std::string		name;
+		bool			signed;
+		int				grade;
+		Form(void);
+		Form(std::string, int);
+		Form(Form&);
+		~Form(void);
+		Form		&operator=(Form&);
+		void		beSigned(Bureaucrat&);
+}
 
 #endif

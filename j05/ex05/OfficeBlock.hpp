@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   OfficeBlock.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:15:27 by jwoodrow         ###   ########.fr       */
+/*   Created: 2015/01/12 17:12:29 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:14:20 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_H
-# define INTERN_H
+#ifndef OFFICE_BLOCK_H
+# define OFFICE_BLOCK_H
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
+#include "Bureaucrat.hpp"
+#include "Intern.hpp"
 
-class Intern
-{
-	public:
-		Intern(void);
-		Intern(Intern&);
-		~Intern(void);
-		Intern			&Intern::operator=(Intern&);
-		Form			*Intern::MakeForm(std::string, std::string);
-};
+class OfficeBlock;
 
 #endif

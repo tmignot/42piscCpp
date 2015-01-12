@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:15:27 by jwoodrow         ###   ########.fr       */
+/*   Created: 2015/01/12 17:08:42 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:08:43 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_H
-# define INTERN_H
-
 #include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
 
-class Intern
-{
-	public:
-		Intern(void);
-		Intern(Intern&);
-		~Intern(void);
-		Intern			&Intern::operator=(Intern&);
-		Form			*Intern::MakeForm(std::string, std::string);
-};
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
+	: Form("Shrubbery Creation", 145, 137), _target(target)
+{}
+
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
+
+void	execute(Bureaucrat const &) {}
 
 #endif

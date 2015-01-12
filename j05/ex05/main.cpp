@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:15:27 by jwoodrow         ###   ########.fr       */
+/*   Created: 2015/01/12 16:03:36 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:10:04 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_H
-# define INTERN_H
+#include "Intern.hpp"
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
-
-class Intern
+int	main(void)
 {
-	public:
-		Intern(void);
-		Intern(Intern&);
-		~Intern(void);
-		Intern			&Intern::operator=(Intern&);
-		Form			*Intern::MakeForm(std::string, std::string);
-};
+	Intern		intern;
+	Form			*shrubbery;
+	Form			*robotomy;
+	Form			*pardon;
 
-#endif
+	shrubbery = intern.makeForm("Shrubbery Creation", "King Arthur");
+	robotomy = intern.makeForm("Robotomy Request", "Bender");
+	pardon = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox")
+	intern.makeForm("Exercice Prefilled", "Student");
+	return (0);
+}

@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   CentralBureaucracy.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:15:27 by jwoodrow         ###   ########.fr       */
+/*   Created: 2015/01/12 17:14:27 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:15:17 by jwoodrow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_H
-# define INTERN_H
+#ifndef CENTRAL_BUREAUCRACY_H
+# define CENTRAL_BUREAUCRACY_H
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
+#include "OfficeBlock.hpp"
 
-class Intern
+class CentralBureaucracy
 {
-	public:
-		Intern(void);
-		Intern(Intern&);
-		~Intern(void);
-		Intern			&Intern::operator=(Intern&);
-		Form			*Intern::MakeForm(std::string, std::string);
 };
 
 #endif
