@@ -1,8 +1,8 @@
 #include "OfficeBlock.hpp"
 
 // Not used and private
-OfficeBlock(OfficeBlock const &) : _intern(NULL), _signing(NULL), _executing(NULL) {}
-OfficeBlock & operator=(OfficeBlock const & ob) {}
+OfficeBlock::OfficeBlock(OfficeBlock const & ob) : _intern(NULL), _signing(NULL), _executing(NULL) {}
+OfficeBlock & OfficeBlock::operator=(OfficeBlock const & ob) { return *this; }
 
 // Used
 OfficeBlock::OfficeBlock() : _intern(NULL), _signing(NULL), _executing(NULL) {}
@@ -15,21 +15,21 @@ OfficeBlock::~OfficeBlock() {}
 
 void OfficeBlock::doBureaucracy(std::string form_name, std::string target)
 {
-  Form * form = _intern.makeForm(form_name, target);
+  Form * form = _intern->MakeForm(form_name, target);
 
   if (form == NULL) {
     throw NoFormException();
   }
 
   try {
-    _signing.signForm(form);
-  } catch (Exception e) {
+    _signing->signForm(*form);
+  } catch (std::exception e) {
     throw CantSignException();
   }
 
   try {
-    _executing.executeForm(form);
-  } catch (Exception e) {
+    _executing->executeForm(*form);
+  } catch (std::exception e) {
     throw CantExecuteException();
   }
 
@@ -41,12 +41,12 @@ void  OfficeBlock::setIntern(Intern *intern)
   _intern = intern;
 }
 
-void  OfficeBlock::setExecutor(Bureaucrat *executor);
+void  OfficeBlock::setExecutor(Bureaucrat *executor)
 {
   _executing = executor;
 }
 
-void  OfficeBlock::setSigner(Bureaucrat *signer);
+void  OfficeBlock::setSigner(Bureaucrat *signer)
 {
   _signing = signer;
 }

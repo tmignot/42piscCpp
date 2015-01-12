@@ -6,7 +6,7 @@
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 16:03:08 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:30:24 by jwoodrow         ###   ########.fr       */
+/*   Updated: 2015/01/12 18:47:45 by mlalisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
-#include "PresidentialPardon.hpp"
+#include "PresidentialPardonForm.hpp"
 
 class Intern
 {
@@ -23,8 +23,8 @@ class Intern
 		Intern(void);
 		Intern(Intern const&);
 		~Intern(void);
-		Intern			&Intern::operator=(Intern const&);
-		Form			*Intern::MakeForm(std::string, std::string);
+		Intern		&operator=(Intern const&);
+    Form			*MakeForm(std::string, std::string);
 };
 
 #endif
