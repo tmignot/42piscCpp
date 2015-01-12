@@ -1,22 +1,23 @@
-#include "Intern.hpp"
+#include "CentralBureaucracy.hpp"
+#include <sstream>
+#include <cstdlib>
+#include <ctime>
 
 int	main(void)
 {
-	Intern		intern;
-	Form			*shrubbery;
-	Form			*robotomy;
-	Form			*pardon;
+	CentralBureaucracy		cb;
+	std::ostringstream		os;
+	Bureaucrat				*tagel;
 
-	shrubbery = intern.makeForm("Shrubbery Creation", "King Arthur");
-	robotomy = intern.makeForm("Robotomy Request", "Bender");
-	pardon = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox");
-	Bureaucrat b("toto", 20);
-	b.signForm(*shrubbery);
-	b.executeForm(*shrubbery);
-	b.signForm(*robotomy);
-	b.executeForm(*robotomy);
-	b.signForm(*pardon);
-	b.executeForm(*pardon);
-	intern.makeForm("Exercice Prefilled", "Student");
-	return (0);
+	srand(time(NULL));
+	for(int i = 0; i < 20; i++)
+	{
+		os << i;
+		tagel = new Bureaucrat(os.str(), rand() % 150 + 1);
+		cb.hire(*tagel);
+		delete tagel;
+		os << i;
+		cb.queueUp(os.str());
+	}
+	cb.doBureaucracy();
 }

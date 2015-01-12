@@ -10,6 +10,9 @@ Bureaucrat::Bureaucrat(std::string const& name, unsigned int grade)
 		throw GradeTooLowException();
 }
 
+Bureaucrat::Bureaucrat(Bureaucrat const &bureaucrat) : _name(bureaucrat._name), _grade(bureaucrat._grade)
+{}
+
 Bureaucrat::~Bureaucrat() {}
 
 std::string 		Bureaucrat::getName() const { return _name; }
