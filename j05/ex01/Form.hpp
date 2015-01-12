@@ -1,5 +1,17 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/12 17:06:10 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:06:14 by jwoodrow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FORM_H
+#define FORM_H
 
 #include <string>
 #include <iostream>
@@ -49,7 +61,7 @@ class Form {
 				GradeTooHighException();
 				GradeTooHighException(GradeTooHighException const&);
 				~GradeTooHighException() throw();
-				
+
 				virtual const char 	*what() const throw();
 		};
 };

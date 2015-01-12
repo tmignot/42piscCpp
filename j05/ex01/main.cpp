@@ -1,14 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/12 17:05:35 by jwoodrow          #+#    #+#             */
+/*   Updated: 2015/01/12 17:05:36 by jwoodrow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-
-#include <iostream>
 
 int	main() {
 
 	try {
 		Bureaucrat toto(std::string("Toto"), 2);
 		std::cout << toto << std::endl;
-		toto.incGrade(); 
+		toto.incGrade();
 		std::cout << toto << std::endl;
 		toto.incGrade();
 	}
