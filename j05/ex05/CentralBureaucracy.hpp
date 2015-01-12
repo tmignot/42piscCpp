@@ -18,8 +18,9 @@
 class CentralBureaucracy
 {
 	private:
-		OfficeBlock		[]offices;
+		OfficeBlock		*offices[20];
 		String			*targets;
+		Bureaucrat		*waiting;
 		class String
 		{
 			private:
