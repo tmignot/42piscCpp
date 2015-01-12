@@ -21,7 +21,7 @@ int	main(void)
 
 	shrubbery = intern.makeForm("Shrubbery Creation", "King Arthur");
 	robotomy = intern.makeForm("Robotomy Request", "Bender");
-	pardon = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox")
+	pardon = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox");
 	intern.makeForm("Exercice Prefilled", "Student");
 	return (0);
 }

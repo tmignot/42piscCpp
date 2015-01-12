@@ -19,7 +19,7 @@ class CentralBureaucracy
 {
 	private:
 		OfficeBlock		*offices[20];
-		String			*targets;
+		CentralBureaucracy::String			*targets;
 		Bureaucrat		*waiting;
 		class String
 		{
@@ -36,7 +36,7 @@ class CentralBureaucracy
 				std::string				pop(void);
 				void					add(std::string);
 				void					deleteAll(void);
-		}
+		};
 
 	public:
 		CentralBureaucracy(void);

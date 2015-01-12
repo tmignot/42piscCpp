@@ -1,45 +1,29 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:06:20 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:06:22 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-Form::Form() : _name("Untitled"), _signed(false), _grade(150)
+Form::Form() : _name("Untitled"), _signed(false), _gradeSign(150), _gradeExec(150)
 {}
 
-Form::Form(Form const & form) : _name(form.getName()), _signed(form.getSigned()), _grade(form.getGrade())
+Form::Form(Form const & form) : _name(form.getName()), _signed(form.getSigned()), 
+	_gradeSign(form.getGradeSign()), _gradeExec(form.getGradeEx())
 {}
 
 Form & Form::operator=(Form const & form)
 {
   _name = form.getName();
   _signed = form.getSigned();
-  _grade = form.getGrade();
+  _gradeSign = form.getGradeSign();
+  _gradeExec = form.getGradeEx();
 
   return (*this);
 }
 
-Form::Form(std::string const & name, unsigned int grade, bool is_signed) : _name(name), _grade(grade), _signed(is_signed)
+Form::Form(std::string const & name, unsigned int gradeSign, unsigned int gradeExec, bool is_signed) : _name(name), _signed(is_signed), _gradeSign(gradeSign), _gradeExec(gradeExec)
 {
-	if (_grade < 1)
-  {
+	if (_gradeSign < 1 || _gradeExec < 1)
 		throw GradeTooHighException();
-    _grade = 1;
-  }
-	else if (_grade > 150)
-  {
-    _grade = 150;
+	else if (_gradeSign > 150 || _gradeExec > 150)
 		throw GradeTooLowException();
-  }
 }
 
 Form::~Form()
@@ -55,17 +39,30 @@ bool          Form::getSigned() const
   return (_signed);
 }
 
-unsigned int  Form::getGrade() const
+unsigned int  Form::getGradeSign() const
 {
-  return (_grade);
+  return (_gradeSign);
+}
+
+unsigned int  Form::getGradeEx() const
+{
+	return (_gradeExec);
 }
 
 void          Form::beSigned(Bureaucrat const & bureaucrat)
 {
-  if (bureaucrat.getGrade() <= _grade)
+  if (bureaucrat.getGrade() <= _gradeSign)
     _signed = true;
   else
     throw GradeTooLowException();
+}
+
+void		  Form::execute(Bureaucrat const & executor)
+{
+	if (!_signed)
+		throw FormNotSignedException();
+	if (executor.getGrade() > _gradeExec)
+		throw RequireHigherGradeException();
 }
 
 Form::GradeTooHighException::GradeTooHighException() : std::exception() {}
@@ -78,9 +75,19 @@ Form::GradeTooLowException::GradeTooLowException(Form::GradeTooLowException cons
 Form::GradeTooLowException::~GradeTooLowException() throw() {}
 const char	*Form::GradeTooLowException::what() const throw() { return "Grade too low"; }
 
+Form::FormNotSignedException::FormNotSignedException() : std::exception() {}
+Form::FormNotSignedException::FormNotSignedException(Form::FormNotSignedException const & e) : std::exception() {}
+Form::FormNotSignedException::~FormNotSignedException() throw() {}
+const char	*Form::FormNotSignedException::what() const throw() { return "Grade too low"; }
+
+Form::RequireHigherGradeException::RequireHigherGradeException() : std::exception() {}
+Form::RequireHigherGradeException::RequireHigherGradeException(Form::RequireHigherGradeException const & e) : std::exception() {}
+Form::RequireHigherGradeException::~RequireHigherGradeException() throw() {}
+const char	*Form::RequireHigherGradeException::what() const throw() { return "Grade too low"; }
+
 std::ostream& operator<<(std::ostream & os, Form const & form)
 {
-  os << "Form '" << form.getName() << "' grade " << form.getGrade();
+  os << "Form '" << form.getName() << "' sign grade " << form.getGradeSign() << " exec grade " << form.getGradeEx();
   if (form.getSigned())
     os << " signed";
   else
