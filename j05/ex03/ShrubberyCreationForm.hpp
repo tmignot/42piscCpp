@@ -1,32 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:55 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 16:13:22 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef SHRUBBERY_CREATION_FORM_H
-# define SHRUBBERY_CREATION_FORM_H
+#ifndef SHRUBERRY_CREATION_FORM_HPP
+#define SHRUBERRY_CREATION_FORM_HPP
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
-class ShrubberyCreationForm : public Form
-{
-	private:
-		std::string				name;
-		bool					signed;
-		int						grade;
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(std::string, int);
-		ShrubberyCreationForm(ShrubberyCreationForm&);
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm	&operator=(ShrubberyCreationForm&);
-		void					beSigned(Bureaucrat&);
-}
+class ShrubberyCreationForm : public Form {
+
+	private :
+
+		std::string	_target;
+
+		ShrubberyCreationForm();
+		ShrubberyCreationForm(ShrubberyCreationForm const&);
+		ShrubberyCreationForm& operator=(ShruberryCreationForm const&);
+
+	public :
+
+		ShrubberyCreationForm(std::string const&);
+		~ShrubberyCreationForm();
+
+		virtual void	execute(Bureaucrat const &);
+};
 
 #endif
