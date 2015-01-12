@@ -18,7 +18,7 @@ void OfficeBlock::doBureaucracy(std::string form_name, std::string target)
   if (_intern == NULL)
     throw NoFormException();
 
-  Form * form = _intern->MakeForm(form_name, target);
+  Form * form = _intern->makeForm(form_name, target);
   if (form == NULL) {
     throw NoFormException();
   }

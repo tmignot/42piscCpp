@@ -28,7 +28,7 @@ class Form {
     std::string   getName() const;
 
     void          beSigned(Bureaucrat const & bureaucrat);
-	void		  execute(Bureaucrat const & bureaucrat);
+	virtual void  execute(Bureaucrat const & bureaucrat);
 
 		class GradeTooLowException : public std::exception {
 

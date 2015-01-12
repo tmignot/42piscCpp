@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat(std::string const& name, unsigned int grade)
 
 Bureaucrat::~Bureaucrat() {}
 
-std::string			Bureaucrat::getName() const { return _name; }
+std::string 		Bureaucrat::getName() const { return _name; }
 unsigned int		Bureaucrat::getGrade() const { return _grade; }
 
 void				Bureaucrat::incGrade()
@@ -46,11 +46,11 @@ void        Bureaucrat::signForm(Form & form)
 void		Bureaucrat::executeForm(Form & form)
 {
 	try {
-		form.execute(*this);
 		std::cout << _name << " executes " << form.getName() << std::endl;
+		form.execute(*this);
 	}
 	catch (std::exception& e){
-		std::cout << _name << " could not execute " << form.getName() << " because " << e.what() << std::endl;
+		std::cout << getName() << " could not execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 
