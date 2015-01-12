@@ -15,11 +15,16 @@ OfficeBlock::~OfficeBlock() {}
 
 void OfficeBlock::doBureaucracy(std::string form_name, std::string target)
 {
-  Form * form = _intern->MakeForm(form_name, target);
+  if (_intern == NULL)
+    throw NoFormException();
 
+  Form * form = _intern->MakeForm(form_name, target);
   if (form == NULL) {
     throw NoFormException();
   }
+
+  if (_signing == NULL)
+    throw CantSignException();
 
   try {
     _signing->signForm(*form);
@@ -27,13 +32,14 @@ void OfficeBlock::doBureaucracy(std::string form_name, std::string target)
     throw CantSignException();
   }
 
+  if (_executing == NULL)
+    throw CantExecuteException();
+
   try {
     _executing->executeForm(*form);
   } catch (std::exception e) {
     throw CantExecuteException();
   }
-
-  delete form;
 }
 
 void  OfficeBlock::setIntern(Intern *intern)
