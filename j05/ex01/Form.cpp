@@ -6,7 +6,7 @@
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 17:06:20 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:06:22 by jwoodrow         ###   ########.fr       */
+/*   Updated: 2015/01/12 19:04:12 by tmignot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Form & Form::operator=(Form const & form)
   return (*this);
 }
 
-Form::Form(std::string const & name, unsigned int gradeSign, unsigned int gradeExec, bool is_signed) : _name(name), _gradeSign(gradeSign), _gradeExec(gradeExec), _signed(is_signed)
+Form::Form(std::string const & name, unsigned int gradeSign, unsigned int gradeExec, bool is_signed) : _name(name), _signed(is_signed), _gradeSign(gradeSign), _gradeExec(gradeExec)
 {
 	if (_gradeSign < 1 || _gradeExec < 1)
 		throw GradeTooHighException();
@@ -70,12 +70,12 @@ void          Form::beSigned(Bureaucrat const & bureaucrat)
 }
 
 Form::GradeTooHighException::GradeTooHighException() : std::exception() {}
-Form::GradeTooHighException::GradeTooHighException(Form::GradeTooHighException const & e) : std::exception() {}
+Form::GradeTooHighException::GradeTooHighException(Form::GradeTooHighException const &) : std::exception() {}
 Form::GradeTooHighException::~GradeTooHighException() throw() {}
 const char	*Form::GradeTooHighException::what() const throw() { return "Grade too high"; }
 
 Form::GradeTooLowException::GradeTooLowException() : std::exception() {}
-Form::GradeTooLowException::GradeTooLowException(Form::GradeTooLowException const & e) : std::exception() {}
+Form::GradeTooLowException::GradeTooLowException(Form::GradeTooLowException const &) : std::exception() {}
 Form::GradeTooLowException::~GradeTooLowException() throw() {}
 const char	*Form::GradeTooLowException::what() const throw() { return "Grade too low"; }
 

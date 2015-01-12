@@ -6,7 +6,7 @@
 /*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 17:06:46 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:07:01 by jwoodrow         ###   ########.fr       */
+/*   Updated: 2015/01/12 19:08:45 by tmignot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Bureaucrat {
 
 	private :
 
-		std::string const&	_name;
+		std::string const	_name;
 		unsigned int		_grade;
 
 		Bureaucrat();
