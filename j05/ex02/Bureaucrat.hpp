@@ -38,10 +38,10 @@ class Bureaucrat {
 				GradeTooHighException& operator=(GradeTooHighException const&);
 
 			public :
-				GradeTooHighException(); 
+				GradeTooHighException();
 				GradeTooHighException(GradeTooHighException const&);
 				~GradeTooHighException() throw();
-				
+
 				virtual const char 	*what() const throw();
 		};
 

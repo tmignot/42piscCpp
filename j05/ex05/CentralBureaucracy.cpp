@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   CentralBureaucracy.cpp                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:31:34 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:31:35 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "CentralBureaucracy.hpp"
 
 CentralBureaucracy::CentralBureaucracy(void) : targets(new CentralBureaucracy::String()), waiting(NULL)
@@ -49,6 +37,7 @@ CentralBureaucracy                    &CentralBureaucracy::operator=(CentralBure
     for (int i = 0; i < 20; i++)
         this->offices[i] = bureau.offices[i];
     this->targets = bureau.targets;
+    return (*this);
 }
 
 void                                CentralBureaucracy::hire(Bureaucrat &bureaucrat)

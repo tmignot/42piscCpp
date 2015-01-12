@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:06:20 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 19:04:12 by tmignot          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
 Form::Form() : _name("Untitled"), _signed(false), _gradeSign(150), _gradeExec(150)
 {}
 
-Form::Form(Form const & form) : _name(form.getName()), _signed(form.getSigned()), 
+Form::Form(Form const & form) : _name(form.getName()), _signed(form.getSigned()),
 	_gradeSign(form.getGradeSign()), _gradeExec(form.getGradeEx())
 {}
 

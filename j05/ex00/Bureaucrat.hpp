@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:06:46 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 19:08:45 by tmignot          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef BUREAUCRAT_H
 #define BUREAUCRAT_H
 
@@ -46,10 +34,10 @@ class Bureaucrat {
 				GradeTooHighException& operator=(GradeTooHighException const&);
 
 			public :
-				GradeTooHighException(); 
+				GradeTooHighException();
 				GradeTooHighException(GradeTooHighException const&);
 				~GradeTooHighException() throw();
-				
+
 				virtual const char 	*what() const throw();
 		};
 

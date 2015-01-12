@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:06:04 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:41:17 by mlalisse         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -52,7 +40,6 @@ void        Bureaucrat::signForm(Form & form)
   catch (Form::GradeTooLowException e)
   {
     std::cout << "Bureaucrat " << _name << " cannot sign Form " << form.getName() << " because " << e.what() << std::endl;
-    throw GradeTooLowException();
   }
 }
 

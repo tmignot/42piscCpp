@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:05:52 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:06:00 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef BUREAUCRAT_H
-#define BUREAUCRAT_H
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <string>
 #include <iostream>

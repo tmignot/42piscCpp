@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:06:53 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:07:40 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 
 int	main() {
@@ -17,7 +5,7 @@ int	main() {
 	try {
 		Bureaucrat toto(std::string("Toto"), 2);
 		std::cout << toto << std::endl;
-		toto.incGrade(); 
+		toto.incGrade();
 		std::cout << toto << std::endl;
 		toto.incGrade();
 	}

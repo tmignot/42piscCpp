@@ -52,7 +52,7 @@ class Form {
 				GradeTooHighException();
 				GradeTooHighException(GradeTooHighException const&);
 				~GradeTooHighException() throw();
-				
+
 				virtual const char 	*what() const throw();
 		};
 

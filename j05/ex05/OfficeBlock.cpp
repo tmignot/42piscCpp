@@ -1,8 +1,8 @@
 #include "OfficeBlock.hpp"
 
 // Not used and private
-OfficeBlock::OfficeBlock(OfficeBlock const & ob) : _intern(NULL), _signing(NULL), _executing(NULL) {}
-OfficeBlock & OfficeBlock::operator=(OfficeBlock const & ob) { return *this; }
+OfficeBlock::OfficeBlock(OfficeBlock const&) : _intern(NULL), _signing(NULL), _executing(NULL) {}
+OfficeBlock & OfficeBlock::operator=(OfficeBlock const&) { return *this; }
 
 // Used
 OfficeBlock::OfficeBlock() : _intern(NULL), _signing(NULL), _executing(NULL) {}
@@ -59,15 +59,15 @@ void  OfficeBlock::setSigner(Bureaucrat *signer)
 
 OfficeBlock::NoFormException::NoFormException() : std::exception() {}
 OfficeBlock::NoFormException::~NoFormException() throw() {}
-OfficeBlock::NoFormException::NoFormException(OfficeBlock::NoFormException const & e) : std::exception() {}
+OfficeBlock::NoFormException::NoFormException(OfficeBlock::NoFormException const&) : std::exception() {}
 const char	*OfficeBlock::NoFormException::what() const throw() { return "No form"; }
 
 OfficeBlock::CantSignException::CantSignException() : std::exception() {}
 OfficeBlock::CantSignException::~CantSignException() throw() {}
-OfficeBlock::CantSignException::CantSignException(OfficeBlock::CantSignException const & e) : std::exception() {}
+OfficeBlock::CantSignException::CantSignException(OfficeBlock::CantSignException const&) : std::exception() {}
 const char	*OfficeBlock::CantSignException::what() const throw() { return "Can't sign"; }
 
 OfficeBlock::CantExecuteException::CantExecuteException() : std::exception() {}
 OfficeBlock::CantExecuteException::~CantExecuteException() throw() {}
-OfficeBlock::CantExecuteException::CantExecuteException(OfficeBlock::CantExecuteException const & e) : std::exception() {}
+OfficeBlock::CantExecuteException::CantExecuteException(OfficeBlock::CantExecuteException const&) : std::exception() {}
 const char	*OfficeBlock::CantExecuteException::what() const throw() { return "Can't execute"; }
