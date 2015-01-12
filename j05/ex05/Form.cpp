@@ -66,22 +66,22 @@ void		  Form::execute(Bureaucrat const & executor)
 }
 
 Form::GradeTooHighException::GradeTooHighException() : std::exception() {}
-Form::GradeTooHighException::GradeTooHighException(Form::GradeTooHighException const &) : std::exception() {}
+Form::GradeTooHighException::GradeTooHighException(Form::GradeTooHighException const & e) : std::exception() {}
 Form::GradeTooHighException::~GradeTooHighException() throw() {}
 const char	*Form::GradeTooHighException::what() const throw() { return "Grade too high"; }
 
 Form::GradeTooLowException::GradeTooLowException() : std::exception() {}
-Form::GradeTooLowException::GradeTooLowException(Form::GradeTooLowException const &) : std::exception() {}
+Form::GradeTooLowException::GradeTooLowException(Form::GradeTooLowException const & e) : std::exception() {}
 Form::GradeTooLowException::~GradeTooLowException() throw() {}
 const char	*Form::GradeTooLowException::what() const throw() { return "Grade too low"; }
 
 Form::FormNotSignedException::FormNotSignedException() : std::exception() {}
-Form::FormNotSignedException::FormNotSignedException(Form::FormNotSignedException const &) : std::exception() {}
+Form::FormNotSignedException::FormNotSignedException(Form::FormNotSignedException const & e) : std::exception() {}
 Form::FormNotSignedException::~FormNotSignedException() throw() {}
 const char	*Form::FormNotSignedException::what() const throw() { return "Grade too low"; }
 
 Form::RequireHigherGradeException::RequireHigherGradeException() : std::exception() {}
-Form::RequireHigherGradeException::RequireHigherGradeException(Form::RequireHigherGradeException const &) : std::exception() {}
+Form::RequireHigherGradeException::RequireHigherGradeException(Form::RequireHigherGradeException const & e) : std::exception() {}
 Form::RequireHigherGradeException::~RequireHigherGradeException() throw() {}
 const char	*Form::RequireHigherGradeException::what() const throw() { return "Grade too low"; }
 

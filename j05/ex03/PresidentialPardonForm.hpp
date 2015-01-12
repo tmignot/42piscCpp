@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:09:10 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:09:14 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef PRESIDENTIAL_PARDON_FORM_H
-#define PRESIDENTIAL_PARDON_FORM_H
+#ifndef PRESIDENTIAL_PARDON_FORM_HPP
+#define PRESIDENTIAL_PARDON_FORM_HPP
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"

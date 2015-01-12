@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:06:10 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:06:14 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef FORM_H
-#define FORM_H
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include <string>
 #include <iostream>
@@ -24,20 +12,23 @@ class Form {
   private:
     std::string   _name;
     bool          _signed;
-    unsigned int  _grade;
+    unsigned int  _gradeSign;
+    unsigned int  _gradeExec;
 
-  public:
+  public :
     Form();
     Form(Form const & form);
-    Form(std::string const&, unsigned int, bool);
+    Form(std::string const&, unsigned int, unsigned int, bool);
     Form & operator=(Form const & form);
     ~Form();
 
-    unsigned int  getGrade() const;
+    unsigned int  getGradeSign() const;
+    unsigned int  getGradeEx() const;
     bool          getSigned() const;
     std::string   getName() const;
 
     void          beSigned(Bureaucrat const & bureaucrat);
+	virtual void  execute(Bureaucrat const & bureaucrat);
 
 		class GradeTooLowException : public std::exception {
 
@@ -61,6 +52,32 @@ class Form {
 				GradeTooHighException();
 				GradeTooHighException(GradeTooHighException const&);
 				~GradeTooHighException() throw();
+				
+				virtual const char 	*what() const throw();
+		};
+
+		class RequireHigherGradeException : public std::exception {
+
+			private :
+				RequireHigherGradeException& operator=(RequireHigherGradeException const&);
+
+			public :
+				RequireHigherGradeException();
+				RequireHigherGradeException(RequireHigherGradeException const&);
+				~RequireHigherGradeException() throw();
+
+				virtual const char 	*what() const throw();
+		};
+
+		class FormNotSignedException : public std::exception {
+
+			private :
+				FormNotSignedException& operator=(FormNotSignedException const&);
+
+			public :
+				FormNotSignedException();
+				FormNotSignedException(FormNotSignedException const&);
+				~FormNotSignedException() throw();
 
 				virtual const char 	*what() const throw();
 		};

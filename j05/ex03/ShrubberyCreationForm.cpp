@@ -1,23 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:08:42 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:08:43 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
-	: Form("Shrubbery Creation", 145, 137), _target(target)
+	: Form("Shrubbery Creation", 145, 137, false), _target(target)
 {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void	execute(Bureaucrat const &) {}
-
-#endif
+void	ShrubberyCreationForm::execute(Bureaucrat const & b) {
+	Form::execute(b);
+	std::ofstream f((_target + std::string("_shrubbery")).c_str());
+	f << "ASCII trees" << std::endl;
+	f.close();
+}

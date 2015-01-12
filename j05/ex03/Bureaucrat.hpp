@@ -1,27 +1,17 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 17:07:58 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 17:08:01 by jwoodrow         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef BUREAUCRAT_H
-#define BUREAUCRAT_H
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <string>
 #include <iostream>
 #include <exception>
 
+class Form;
+
 class Bureaucrat {
 
 	private :
 
-		std::string const&	_name;
+		std::string const	_name;
 		unsigned int		_grade;
 
 		Bureaucrat();
@@ -33,6 +23,8 @@ class Bureaucrat {
 		Bureaucrat(std::string const&, unsigned int);
 		~Bureaucrat();
 
+		void            signForm(Form & form);
+		void			executeForm(Form & form);
 
 		std::string			getName() const;
 		unsigned int		getGrade() const;
