@@ -1,34 +1,155 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 16:03:36 by jwoodrow          #+#    #+#             */
-/*   Updated: 2015/01/12 19:13:15 by tmignot          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "OfficeBlock.hpp"
+//#include "Bureaucrat.hpp"
+//#include "Intern.hpp"
+//#include "Form.hpp"
+//#include "ShrubberyCreationForm.hpp"
+//#include "RobotomyRequestForm.hpp"
+//#include "PresidentialPardonForm.hpp"
 
-#include "Intern.hpp"
+#include <iostream>
 
-int	main(void)
+int main ()
 {
-	Intern		intern;
-	Form			*shrubbery;
-	Form			*robotomy;
-	Form			*pardon;
+  {
+    Intern idiotOne ;
+    Bureaucrat hermes( "Hermes Conrad" , 37);
+    Bureaucrat bob( "Bobby Bobson" , 123);
+    OfficeBlock ob ; ob .  setIntern (&idiotOne); ob .  setSigner (&bob); ob .  setExecutor (&hermes);
 
-	shrubbery = intern.makeForm("Shrubbery Creation", "King Arthur");
-	robotomy = intern.makeForm("Robotomy Request", "Bender");
-	pardon = intern.makeForm("Presidential Pardon", "Zaphod Beeblebrox");
-	Bureaucrat b("toto", 20);
-	b.signForm(*shrubbery);
-	b.executeForm(*shrubbery);
-	b.signForm(*robotomy);
-	b.executeForm(*robotomy);
-	b.signForm(*pardon);
-	b.executeForm(*pardon);
-	intern.makeForm("Exercice Prefilled", "Student");
-	return (0);
+    try
+    {
+      ob .  doBureaucracy ( "Shrubbery Creation" , "Pigley");
+    }
+    catch (OfficeBlock::NoFormException e)
+    {
+      std::cout << "NoFormException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantSignException e)
+    {
+      std::cout << "CantSignException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantExecuteException e)
+    {
+      std::cout << "CantExecuteException: " << e.what() << std::endl;
+    }
+    catch (std :: exception & e)
+    {
+
+    }
+
+    try
+    {
+      ob .  doBureaucracy ( "No request" , "Pigley");
+    }
+    catch (OfficeBlock::NoFormException e)
+    {
+      std::cout << "NoFormException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantSignException e)
+    {
+      std::cout << "CantSignException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantExecuteException e)
+    {
+      std::cout << "CantExecuteException: " << e.what() << std::endl;
+    }
+    catch (std :: exception & e)
+    {
+
+    }
+  }
+
+  {
+    Intern idiotOne ;
+    Bureaucrat hermes( "Hermes Conrad" , 37);
+    Bureaucrat bob( "Bobby Bobson" , 123);
+    OfficeBlock ob ;
+    ob .  setIntern (&idiotOne);
+    ob .  setSigner (&bob);
+    //ob .  setExecutor (&hermes);
+
+    try
+    {
+      ob .  doBureaucracy ( "Shrubbery Creation" , "Pigley");
+    }
+    catch (OfficeBlock::NoFormException e)
+    {
+      std::cout << "NoFormException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantSignException e)
+    {
+      std::cout << "CantSignException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantExecuteException e)
+    {
+      std::cout << "CantExecuteException: " << e.what() << std::endl;
+    }
+    catch (std :: exception & e)
+    {
+
+    }
+  }
+  {
+    Intern idiotOne ;
+    Bureaucrat hermes( "Hermes Conrad" , 37);
+    Bureaucrat bob( "Bobby Bobson" , 123);
+    OfficeBlock ob ;
+    ob .  setIntern (&idiotOne);
+    // ob .  setSigner (&bob);
+    ob .  setExecutor (&hermes);
+
+    try
+    {
+      ob .  doBureaucracy ( "Shrubbery Creation" , "Pigley");
+    }
+    catch (OfficeBlock::NoFormException e)
+    {
+      std::cout << "NoFormException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantSignException e)
+    {
+      std::cout << "CantSignException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantExecuteException e)
+    {
+      std::cout << "CantExecuteException: " << e.what() << std::endl;
+    }
+    catch (std :: exception & e)
+    {
+
+    }
+  }
+  {
+    Intern idiotOne ;
+    Bureaucrat hermes( "Hermes Conrad" , 37);
+    Bureaucrat bob( "Bobby Bobson" , 123);
+    OfficeBlock ob ;
+    // ob .  setIntern (&idiotOne);
+    ob .  setSigner (&bob);
+    ob .  setExecutor (&hermes);
+
+    try
+    {
+      ob .  doBureaucracy ( "Shrubbery Creation" , "Pigley");
+    }
+    catch (OfficeBlock::NoFormException e)
+    {
+      std::cout << "NoFormException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantSignException e)
+    {
+      std::cout << "CantSignException: " << e.what() << std::endl;
+    }
+    catch (OfficeBlock::CantExecuteException e)
+    {
+      std::cout << "CantExecuteException: " << e.what() << std::endl;
+    }
+    catch (std :: exception & e)
+    {
+
+    }
+  }
+
+  return 0;
 }
+
