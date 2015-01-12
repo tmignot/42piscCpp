@@ -29,7 +29,7 @@ CentralBureaucracy::CentralBureaucracy(CentralBureaucracy const &bureau)
     *this = bureau;
 }
 
-CentralBureaucracy::~CentralBuraucracy(void)
+CentralBureaucracy::~CentralBureaucracy(void)
 {
     int        i;
 
@@ -40,14 +40,14 @@ CentralBureaucracy::~CentralBuraucracy(void)
         this->offices[i] = NULL;
         i++;
     }
-    delete [] this->offices;
     this->targets->deleteAll();
     delete this->targets;
 }
 
 CentralBureaucracy                    &CentralBureaucracy::operator=(CentralBureaucracy const &bureau)
 {
-    this->offices = bureau.offices;
+    for (int i = 0; i < 20; i++)
+        this->offices[i] = bureau.offices[i];
     this->targets = bureau.targets;
 }
 
@@ -71,7 +71,7 @@ void                                CentralBureaucracy::hire(Bureaucrat &bureauc
             std::cout << "Sorry we are not hiring at the moment" << std::endl;
     }
     else
-        this->waiting = new Bureaucrat(bureaucrat);
+        this->waiting = &bureaucrat;
 }
 
 void                                CentralBureaucracy::queueUp(std::string target)
@@ -79,10 +79,10 @@ void                                CentralBureaucracy::queueUp(std::string targ
     this->targets->add(target);
 }
 
-void                                doBureaucracy(void)
+void                                CentralBureaucracy::doBureaucracy(void)
 {
     int        i;
-    std::string        []requests = ["Shrubbery Creation", "Robotomy Request", "Presidential Pardon"];
+    std::string        requests[] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
 
     if (this->offices[0])
     {
@@ -91,7 +91,7 @@ void                                doBureaucracy(void)
         {
             if (!this->offices[i])
                 i = 0;
-            this->offices[i]->doDemocracy(requests[i % 3], this->targets->pop());
+            this->offices[i]->doBureaucracy(requests[i % 3], *(this->targets->pop()));
             i++;
         }
     }
