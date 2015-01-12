@@ -29,7 +29,7 @@ CentralBureaucracy::~CentralBureaucracy(void)
         i++;
     }
     if (this->waiting)
-        delete this->waiting
+        delete this->waiting;
     this->targets->deleteAll();
     delete this->targets;
 }
@@ -63,7 +63,7 @@ void                                CentralBureaucracy::hire(Bureaucrat &bureauc
             std::cout << "Sorry we are not hiring at the moment" << std::endl;
     }
     else
-        this->waiting = &bureaucrat;
+        this->waiting = new Bureaucrat(bureaucrat);
 }
 
 void                                CentralBureaucracy::queueUp(std::string target)
