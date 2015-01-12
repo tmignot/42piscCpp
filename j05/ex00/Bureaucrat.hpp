@@ -1,11 +1,9 @@
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+#ifndef BUREAUCRAT_H
+#define BUREAUCRAT_H
 
 #include <string>
 #include <iostream>
 #include <exception>
-
-class Form;
 
 class Bureaucrat {
 
@@ -23,8 +21,6 @@ class Bureaucrat {
 		Bureaucrat(Bureaucrat const&);
 		~Bureaucrat();
 
-		void            signForm(Form & form);
-		void			executeForm(Form & form);
 
 		std::string			getName() const;
 		unsigned int		getGrade() const;

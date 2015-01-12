@@ -11,7 +11,7 @@ class Bureaucrat {
 
 	private :
 
-		std::string const	_name;
+		std::string const&	_name;
 		unsigned int		_grade;
 
 		Bureaucrat();
@@ -23,8 +23,7 @@ class Bureaucrat {
 		Bureaucrat(Bureaucrat const&);
 		~Bureaucrat();
 
-		void            signForm(Form & form);
-		void			executeForm(Form & form);
+    void            signForm(Form & form);
 
 		std::string			getName() const;
 		unsigned int		getGrade() const;
