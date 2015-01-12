@@ -20,4 +20,5 @@ int	main(void)
 		cb.queueUp(os.str());
 	}
 	cb.doBureaucracy();
+	return (0);
 }
