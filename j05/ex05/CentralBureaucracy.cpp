@@ -28,6 +28,8 @@ CentralBureaucracy::~CentralBureaucracy(void)
         this->offices[i] = NULL;
         i++;
     }
+    if (this->waiting)
+        delete this->waiting
     this->targets->deleteAll();
     delete this->targets;
 }
