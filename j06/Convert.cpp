@@ -72,6 +72,9 @@ bool		is_float(const char *s) {
 }
 
 bool		is_char(const char *s) {
+	std::string t = "\\127";
+	if (s == t)
+		return true;
 	for (int i = 0; i < 31; i++) {
 		if (s == ascii[i])
 			return true;
@@ -84,6 +87,7 @@ bool		is_char(const char *s) {
 
 void		print_from_char(const char *s) {
 	int i = 0;
+	std::string t = "\\127";
 	for (i = 0; i < 31; i++) {
 		if (s == ascii[i])
 			break;
@@ -91,6 +95,13 @@ void		print_from_char(const char *s) {
 	if (i == 31) {
 		i = static_cast <int>(s[0]);
 	}
+	if (i >= 0 && i <= 31)
+	std::cout << "char: " << ascii[i] << std::endl;
+	else if (s == t) {
+	std::cout << "char: " << "\\127" << std::endl;
+	i = 127;
+	}
+	else
 	std::cout << "char: " << static_cast<char>(i) << std::endl;
 	std::cout << "int: " << i << std::endl;
 	std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(i) << "f" << std::endl;
@@ -188,10 +199,10 @@ int			main(int ac, const char **av) {
 		return 1;
 	}
 	for (int i = 1; i < ac; i++) {
-		if (is_char(av[i]))
-			print_from_char(av[i]);
-		else if (is_int(av[i]))
+		if (is_int(av[i]))
 			print_from_int(av[i]);
+		else if (is_char(av[i]))
+			print_from_char(av[i]);
 		else if (is_float(av[i]))
 			print_from_float(av[i]);
 	}
