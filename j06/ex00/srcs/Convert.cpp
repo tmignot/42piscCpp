@@ -200,14 +200,18 @@ void		print_from_double(char const *s) {
 		std::cout << "int: " << "impossible" << std::endl;
 	else
 		std::cout << "int: " << i << std::endl;
-	if (std::abs(d) > static_cast<float>(std::numeric_limits<float>::max())) 
-		std::cout << "float: " << "impossible" << std::endl;
-	else
+	if (!(std::abs(d) > static_cast<float>(std::numeric_limits<float>::max()))) 
 		std::cout << "float: " << std::fixed << f << "f" << std::endl;
-	if (std::abs(d) > std::numeric_limits<double>::max()) 
-		std::cout << "double: " << "impossible" << std::endl;
+	else if (is_inf(s))
+		std::cout << "float: " << s[0] << s[1] << s[2] << s[3] << 'f' << std::endl;
 	else
+		std::cout << "float: " << "impossible" << std::endl;
+	if (!(std::abs(d) > std::numeric_limits<double>::max()))
 		std::cout << "double: " << std::fixed << d <<  std::endl;
+	else if (is_inf(s))
+		std::cout << "double: " << s[0] << s[1] << s[2] << s[3] << std::endl;
+	else
+		std::cout << "double: " << "impossible" << std::endl;
 }
 
 void		print_from_float(char const *s) {
@@ -231,14 +235,18 @@ void		print_from_float(char const *s) {
 		std::cout << "int: " << "impossible" << std::endl;
 	else
 		std::cout << "int: " << i << std::endl;
-	if (std::abs(d) > static_cast<float>(std::numeric_limits<float>::max())) 
-		std::cout << "float: " << "impossible" << std::endl;
-	else
+	if (!(std::abs(d) > static_cast<float>(std::numeric_limits<float>::max()))) 
 		std::cout << "float: " << std::fixed << f << "f" << std::endl;
-	if (std::abs(d) > std::numeric_limits<double>::max()) 
-		std::cout << "double: " << "impossible" << std::endl;
+	else if (is_inff(s))
+		std::cout << "float: " << s[0] << s[1] << s[2] << s[3] << 'f' << std::endl;
 	else
+		std::cout << "float: " << "impossible" << std::endl;
+	if (!(std::abs(d) > std::numeric_limits<double>::max()))
 		std::cout << "double: " << std::fixed << d <<  std::endl;
+	else if (is_inff(s))
+		std::cout << "double: " << s[0] << s[1] << s[2] << s[3] << std::endl;
+	else
+		std::cout << "double: " << "impossible" << std::endl;
 }
 
 void		print_from_int(char const *s) {
