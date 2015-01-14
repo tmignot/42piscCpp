@@ -1,4 +1,29 @@
-int main( void ) {
+#include <iostream>
+
+template <class T>
+void		swap(T &a, T &b)
+{
+	T		tmp;
+
+	tmp = b;
+	b = a;
+	a = tmp;
+}
+
+template <class T>
+T			min(T a, T b)
+{
+	return (a > b ? b : a);
+}
+
+template <class T>
+T			max(T a, T b)
+{
+	return (a > b ? a : b);
+}
+
+int			main(void)
+{
 	int a = 2;
 	int b = 3;
 	::swap( a, b );

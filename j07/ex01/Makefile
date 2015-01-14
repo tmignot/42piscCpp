@@ -1,4 +1,4 @@
-NAME = iter
+NAME = whatever
 LIBNAME =
 C = \033[0;36m
 CFLAGS = -Wall -Werror -Wextra
@@ -7,7 +7,7 @@ OBJPATH = obj
 INCLUDE = ./
 
 SRCS = \
-	   Whatever.cpp
+	   iter.cpp
 
 V = 0
 SILENCE_1 :=

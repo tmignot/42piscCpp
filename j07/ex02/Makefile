@@ -7,7 +7,6 @@ OBJPATH = obj
 INCLUDE = ./
 
 SRCS = \
-	   array.cpp\
 	   main.cpp
 
 V = 0

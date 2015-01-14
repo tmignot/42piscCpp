@@ -7,7 +7,7 @@ OBJPATH = obj
 INCLUDE = ./
 
 SRCS = \
-	   iter.cpp
+	   whatever.cpp
 
 V = 0
 SILENCE_1 :=
