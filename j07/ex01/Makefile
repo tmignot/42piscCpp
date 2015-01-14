@@ -1,4 +1,4 @@
-NAME = whatever
+NAME = iter
 LIBNAME =
 C = \033[0;36m
 CFLAGS = -Wall -Werror -Wextra
