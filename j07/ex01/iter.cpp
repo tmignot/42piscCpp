@@ -18,8 +18,8 @@ void			doubleUp(int n)
 	std::cout << n * 2 << std::endl;
 }
 
-template<class T>
-void			iter(T *array, size_t size, void (*f)(T))
+template<class T, class U>
+void			iter(T *array, size_t size, U (*f)(T))
 {
 	for (int i = 0; i < size; i++)
 		f(array[i]);
