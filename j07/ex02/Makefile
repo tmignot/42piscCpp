@@ -2,11 +2,13 @@ NAME = array
 LIBNAME =
 C = \033[0;36m
 CFLAGS = -Wall -Werror -Wextra
-SRCPATH = srcs
+SRCPATH = ./
 OBJPATH = obj
 INCLUDE = ./
 
 SRCS = \
+	   array.cpp\
+	   main.cpp
 
 V = 0
 SILENCE_1 :=
@@ -37,7 +39,7 @@ $(NAME): $(OBJDIR)
 	@echo "$(SKIP)\033[2K"
 	@echo "$(SKIP)$(U)$(C)[BUILD  :\033[1;32m DONE$(C)]\033[0m"
 
-$(OBJPATH)/%.o: srcs/%.cpp
+$(OBJPATH)/%.o: %.cpp
 	@echo "$(U)$(C)[COMPILE: \033[1;31m$<\033[A\033[0m"
 	@echo "\033[0;32m"
 	$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
