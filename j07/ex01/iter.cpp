@@ -55,6 +55,6 @@ int				main(void)
 		"end ?"
 	};
 	::iter(intArray, 10, &doubleUp);
-	::iter(stringArray, 11, &displayFour);
+	::iter(stringArray, 11, &displayFour<std::string>);
 	return (0);
 }
