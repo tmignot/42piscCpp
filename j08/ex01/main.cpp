@@ -14,9 +14,16 @@ int main() {
 	
 	}
 	catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
+	try {
+		Span s2(2);
+		s2.longestSpan();
+	}
+	catch (std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
 
 	return 0;
 

@@ -11,12 +11,15 @@ class Span {
 		std::vector<int>	_vector;
 
 		Span();
-		Span(Span const&);
-		Span& operator=(Span const&);
 
 	public :
 
 		Span(unsigned int);
+		Span(Span const&);
+		Span& operator=(Span const&);
+
+		unsigned int		getSize() const;
+		std::vector<int>	getVect() const;
 
 		void	addNumber(int);
 		void	addRange(int, int);

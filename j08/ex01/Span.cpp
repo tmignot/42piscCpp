@@ -3,9 +3,22 @@
 #include <algorithm>
 #include <iostream>
 
+Span::Span(Span const& copy) {
+	*this = copy;
+}
+
 Span::Span(unsigned int n) : _n(n), _i(0) {
 	_vector.reserve(_n);
 }
+
+Span& Span::operator=(Span const& rhs) {
+	_n = rhs.getSize();
+	_vector = rhs.getVect();
+	return *this;
+}
+
+unsigned int		Span::getSize() const { return _n; }
+std::vector<int>	Span::getVect() const { return _vector; }
 
 void	Span::addNumber(int n) {
 	if (_i < _n) {
@@ -18,7 +31,7 @@ void	Span::addNumber(int n) {
 }
 
 void	Span::addRange(int start, int end) {
-	if (std::abs(end - start)  > (_n - _i))
+	if (std::abs(end - start)  > static_cast<int>(_n - _i))
 		throw NotEnoughSpaceException();
 	else {
 		int inc = (start < end) ? 1 : -1;
@@ -36,8 +49,8 @@ unsigned int Span::shortestSpan() {
 	}
 	std::sort(_vector.begin(), _vector.begin() + _i);
 	unsigned int s = longestSpan();
-	for (int i = 0; i < _i - 1; ++i) {
-		if (s > std::abs(_vector[i + 1] - _vector[i]))
+	for (int i = 0; i < static_cast<int>(_i - 1); ++i) {
+		if (static_cast<int>(s) > std::abs(_vector[i + 1] - _vector[i]))
 			s = std::abs(_vector[i + 1] - _vector[i]);
 	}
 	return s;
