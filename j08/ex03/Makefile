@@ -8,7 +8,7 @@ INCLUDE = ./
 
 SRCS = \
 	   main.cpp\
-	   BrainFuck.cpp
+	   Mindopen.cpp
 
 V = 0
 SILENCE_1 :=

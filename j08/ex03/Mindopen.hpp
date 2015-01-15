@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <vector>
 
-class BrainFuck
+class Mindopen
 {
     private:
         char                *allowedChars;
@@ -12,8 +12,8 @@ class BrainFuck
         int                 currentIndex;
 
     public:
-        BrainFuck(void);
-        ~BrainFuck(void);
+        Mindopen(void);
+        ~Mindopen(void);
 
         bool isAllowed(const char c);
 

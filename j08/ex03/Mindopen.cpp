@@ -1,6 +1,6 @@
-#include "BrainFuck.hpp"
+#include "Mindopen.hpp"
 
-BrainFuck::BrainFuck(void) : MEMSIZE(1000), ptr(std::vector<char>(this->MEMSIZE, 0)), currentIndex(0)
+Mindopen::Mindopen(void) : MEMSIZE(1000), ptr(std::vector<char>(this->MEMSIZE, 0)), currentIndex(0)
 {
 	this->allowedChars = new char[9];
 	this->allowedChars[0] = '>';
@@ -14,7 +14,7 @@ BrainFuck::BrainFuck(void) : MEMSIZE(1000), ptr(std::vector<char>(this->MEMSIZE,
 	this->allowedChars[8] = ' ';
 }
 
-bool BrainFuck::isAllowed(const char c)
+bool Mindopen::isAllowed(const char c)
 {
 	int			i = 0;
 
@@ -27,9 +27,9 @@ bool BrainFuck::isAllowed(const char c)
 	return (false);
 }
 
-BrainFuck::~BrainFuck(void) {}
+Mindopen::~Mindopen(void) {}
 
-bool BrainFuck::IsCorrect(std::string str)
+bool Mindopen::IsCorrect(std::string str)
 {
     int loopLevel = 0;
 
@@ -47,14 +47,14 @@ bool BrainFuck::IsCorrect(std::string str)
     return (loopLevel == 0 ? true : false);
 }
 
-void BrainFuck::ResetMem(void)
+void Mindopen::ResetMem(void)
 {
     for (int i = 0; i < this->MEMSIZE; i++)
         this->ptr[i] = 0;
     this->currentIndex = 0;
 }
 
-void BrainFuck::Parse(std::string code, int id)
+void Mindopen::Parse(std::string code, int id)
 {
     int loopDepth = 0;
     for (unsigned int i = 0; i < code.length(); i++)
@@ -111,7 +111,7 @@ void BrainFuck::Parse(std::string code, int id)
     }
 }
 
-void BrainFuck::Parse(std::string code)
+void Mindopen::Parse(std::string code)
 {
     this->Parse(code, 0);
 }
@@ -131,7 +131,7 @@ std::string			toLower(std::string str)
 	return (ret);
 }
 
-void BrainFuck::ToDo(std::string code) 
+void Mindopen::ToDo(std::string code) 
 {
     if (this->IsCorrect(code))
     {

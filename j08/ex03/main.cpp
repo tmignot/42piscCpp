@@ -1,10 +1,10 @@
-#include "BrainFuck.hpp"
+#include "Mindopen.hpp"
 #include <fstream>
 #include <streambuf>
 
 int			main(int ac, char **av)
 {
-	BrainFuck		bf;
+	Mindopen		bf;
 
 	if (ac == 2)
 	{
