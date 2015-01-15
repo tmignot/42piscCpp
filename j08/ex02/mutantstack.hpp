@@ -1,86 +1,71 @@
-#include <iostream>
-#include <algorithm>
-#include <list>
+#ifndef     _MUTANTSTACK_H_
+# define    _MUTANTSTACK_H_
 
-#ifndef 	_MUTANTSTACK_H_
-# define	_MUTANTSTACK_H_
+#include    <stack>
+#include    <iostream>
+#include    <iterator>
 
 template<typename T>
-class 	Mutantstack {
-
+class MutantStack : public std::stack<T>
+{
 public:
-	Mutantstack(void) {
+    MutantStack();
+    ~MutantStack();
+    MutantStack( MutantStack const &);
+    MutantStack & operator=(MutantStack const &);
 
-	};
+    //Operator functions
+    class iterator : public std::iterator<std::input_iterator_tag, T>
+    {
+        T* p;
+        
+    public:
+        iterator(T* x) :p(x) {}
+        iterator(const iterator& mit)
+            : p(mit.p) {
 
-	~Mutantstack(void) {
+        }
 
-	};
+        iterator&       operator++() {
+            ++p;
+            return *this;
+        }
 
-	bool 	empty(void) {
-	    return (this->_root_node.empty());
-	};
+        iterator        operator++(int) {
+            iterator    tmp(*this);
+            operator++();
+            return tmp;
+        }
 
-	unsigned int size(void) {
-	    return (this->_root_node.size());
-	};
+        iterator&       operator--() {
+            --p;
+            return *this;
+        }
 
-	void 	push(T data) {
-	    this->_root_node.push_front(data);
-	};
+        iterator        operator--(int) {
+            iterator tmp(*this);
+            operator--();
+            return tmp;
+        }
 
-	void 	pop(void) {
-	    this->_root_node.pop_front();
-	};
+        bool            operator==(const iterator& rhs) {
+            return p==rhs.p;
+        }
 
-	T 		top(void) {
-	    return (this->_root_node.front());
-	};
+        bool            operator!=(const iterator& rhs) {
+            return p!=rhs.p;
+        }
 
-	class iterator : public std::iterator<std::input_iterator_tag, T> {
-		T 	*p;
-	public:
-		iterator(T *x) : p(x) {
+        int& operator*() {
+            return *p;
+        }
+    };
 
-		};
-
-		iterator(const iterator &mit) : p(mit.p) {
-
-		};
-
-		iterator 	&operator++() {
-			++p;
-			return *this;
-		};
-
-		iterator 	operator++(T) {
-			iterator tmp(*this);
-			operator++();
-
-			return (tmp);
-		};
-
-		bool 		operator==(const iterator& rhs) {
-			return (p == rhs.p);
-		};
-
-		bool 		operator!=(const iterator& rhs) {
-			return (p != rhs.p);
-		};
-
-		int 		&operator*() {
-			return (*p);
-		};
-
-	private:
-
-	};
-
-private:
-	Mutantstack(Mutantstack &src);
-	Mutantstack &operator=(Mutantstack &rhs);
-
-	std::list<T>  _root_node;
+    MutantStack<T>::iterator begin();
+    MutantStack<T>::iterator end();
 };
 
-#endif		/* !_MUTANTSTACK_H_ */
+#include "mutantstack.cpp"
+
+
+#endif /* _MUTANTSTACK_H_ */
