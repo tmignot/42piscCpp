@@ -25,5 +25,17 @@ int		main( void ) {
 		std::cout << e.what() << std::endl;
 	}
 
+	try {
+		easyfind< std::vector <int> >(pouet, 35);
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		easyfind< std::list <int> >(pouet2, 35);
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	}
+
 	return (0);
 }
