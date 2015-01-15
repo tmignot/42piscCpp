@@ -10,20 +10,22 @@ class Mindopen
         const int           MEMSIZE;
         std::vector<char>     ptr;
         int                 currentIndex;
+		Mindopen(Mindopen const&);
+		Mindopen&		operator=(Mindopen const&);
 
     public:
         Mindopen(void);
         ~Mindopen(void);
 
-        bool isAllowed(const char c);
+        bool			isAllowed(const char c);
 
-        bool IsCorrect(std::string str);
+        bool			IsCorrect(std::string str);
 
-        void ResetMem(void);
+        void			ResetMem(void);
 
-        void Parse(std::string code, int id);
+        void			Parse(std::string code, int id);
 
-        void Parse(std::string code);
+        void			Parse(std::string code);
 
-        void ToDo(std::string str);
+        void			ToDo(std::string str);
 };
