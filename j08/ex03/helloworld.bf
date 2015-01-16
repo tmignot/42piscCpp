@@ -1,1 +1,1 @@
->+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.
+bcccccccccgaccccccccbdhaebcccccccgaccccbdhaceccccccceecccegdhbccccccccgaccccbdh aebcccccccccccgaccccccccbdhadeddddddddeccceddddddeddddddddegdhbccccccccgaccccbd hacegdhcccccccccce
