@@ -13,6 +13,7 @@ int			main(int ac, char **av)
 		{
 			std::string		str((std::istreambuf_iterator<char>(fs)), std::istreambuf_iterator<char>());
 			bf.ToDo(str);
+			bf.execute();
 			fs.close();
 		}
 	}
