@@ -12,7 +12,7 @@ Hostname::Hostname(void) : IMonitorModule()
 	{
 		extern char **environ;
 		std::string user;
-		
+
 		for (int i = 0; environ[i]; ++i) {
 			if (strncmp(environ[i], "USER=", 5) == 0) {
 				user = std::string(environ[i]).substr(5);
@@ -28,6 +28,15 @@ Hostname::Hostname(void) : IMonitorModule()
 
 Hostname::Hostname(Hostname const &hostname) : IMonitorModule() {*this = hostname;}
 Hostname::~Hostname(void) {}
-Hostname				&Hostname::operator=(Hostname const&) {return (*this);}
+Hostname								&Hostname::operator=(Hostname const&) {return (*this);}
 
-std::vector<std::string> const& Hostname::getData() const { return _data; }
+std::vector<std::string> const			&Hostname::getData(void) const { return _data; }
+WINDOW									*Hostname::initWindow(WINDOW *lastwin) const
+{
+	unsigned int		w = (this->_hostName.length() >= this->_userName.length() ? this->_hostName.length() : this->_userName.length()) + 2;
+	WINDOW				*local_win;
+	local_win = newwin(4, w, getbegy(lastwin), getbegx(lastwin));
+	box(local_win, 0 , 0);
+	wrefresh(local_win);
+	return (local_win);
+}

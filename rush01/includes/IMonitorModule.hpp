@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <ncurses.h>
 
 class IMonitorModule
 {
@@ -12,9 +13,10 @@ class IMonitorModule
 		IMonitorModule(void);
 		IMonitorModule(IMonitorModule const&);
 		virtual ~IMonitorModule(void);
-		IMonitorModule				&operator=(IMonitorModule const&);
+		IMonitorModule								&operator=(IMonitorModule const&);
 
-		virtual std::vector<std::string> const& getDatas() const = 0;
+		virtual std::vector<std::string> const 		&getDatas(void) const = 0;
+		virtual WINDOW								*initWindow(WINDOW*) const = 0;
 };
 
 #endif
