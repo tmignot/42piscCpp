@@ -3,14 +3,14 @@
 int		main(int ac, char **av)
 {
 	IMonitorDisplay		*monitor = NULL;
-	std::string			mode;
+	Options				options(ac, av);
 	
-	if (ac == 1 || (mode = std::string(av[1])) == "-s")
+	if (options.shell())
 		monitor = new ShellDisplay();
-	else if (ac >= 2 && mode == "-g")
+	else if (options.windowed())
 		monitor = new WindowedDisplay();
 	else
-		std::cout << "Invalid display mode option" << std::endl << "Please use -g or -s option to request a display mode" << std::endl;
+		options.printErrors();
 	if (monitor)
 		delete monitor;
 	return (0);

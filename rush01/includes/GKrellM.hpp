@@ -5,5 +5,6 @@
 #include <iostream>
 #include "ShellDisplay.hpp"
 #include "WindowedDisplay.hpp"
+#include "Options.hpp"
 
 #endif

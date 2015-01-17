@@ -18,7 +18,8 @@ SRCS = \
 	   IMonitorDisplay.cpp\
 	   ShellDisplay.cpp\
 	   WindowedDisplay.cpp\
-	   Module.cpp
+	   Module.cpp\
+	   Options.cpp
 
 V = 0
 SILENCE_1 :=
