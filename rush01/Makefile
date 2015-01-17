@@ -17,7 +17,8 @@ SRCS = \
 	   Network.cpp\
 	   IMonitorDisplay.cpp\
 	   ShellDisplay.cpp\
-	   WindowedDisplay.cpp
+	   WindowedDisplay.cpp\
+	   Module.cpp
 
 V = 0
 SILENCE_1 :=
