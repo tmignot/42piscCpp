@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <ncurses.h>
+#include <sys/sysinfo.h>
 
 class IMonitorModule
 {
