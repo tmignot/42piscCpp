@@ -38,7 +38,7 @@ WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 	WINDOW				*local_win = NULL;
 	if (lastwin)
 	{
-		if (getbegy(lastwin) + getmaxy(lastwin) + 5 < getmaxy(displaywin))
+		if (getbegy(lastwin) + getmaxy(lastwin) + 4 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
 				local_win = newwin(4, w, getbegy(lastwin) + getmaxy(lastwin) + 1, getbegx(lastwin));

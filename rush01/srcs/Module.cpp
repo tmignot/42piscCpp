@@ -28,7 +28,7 @@ Module::~Module(void)
 
 void					Module::draw(void) const
 {
-	//this->module->update();
+	this->module->update();
 	std::vector<std::string>		data = this->module->getData();
 
 	if (this->twin)

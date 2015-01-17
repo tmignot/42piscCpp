@@ -24,6 +24,7 @@ class Hostname : public IMonitorModule
 		virtual std::vector<std::string> const		&getData(void) const;
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 		virtual char								getType(void) const;
+		virtual void								update(void) const;
 };
 
 #endif
