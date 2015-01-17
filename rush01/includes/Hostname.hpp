@@ -9,8 +9,9 @@
 class Hostname : public IMonitorModule
 {
 	private:
-		std::string		_userName;
-		std::string		_hostName;
+		std::string				_userName;
+		std::string				_hostName;
+		std::vector<std::string> _data;
 
 	protected:
 	public:
@@ -18,6 +19,8 @@ class Hostname : public IMonitorModule
 		Hostname(Hostname const&);
 		~Hostname(void);
 		Hostname			&operator=(Hostname const&);
+
+		virtual std::vector<std::string> const& getData() const;
 };
 
 #endif

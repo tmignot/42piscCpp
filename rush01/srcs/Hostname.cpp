@@ -21,8 +21,13 @@ Hostname::Hostname(void) : IMonitorModule()
 		}
 		_userName = user;
 	}		
+	_data.reserve(2);
+	_data[0] = _userName;
+	_data[1] = _hostName;
 }
 
 Hostname::Hostname(Hostname const &hostname) : IMonitorModule() {*this = hostname;}
 Hostname::~Hostname(void) {}
 Hostname				&Hostname::operator=(Hostname const&) {return (*this);}
+
+std::vector<std::string> const& Hostname::getData() const { return _data; }
