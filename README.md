@@ -43,5 +43,4 @@ Decouvrons les cles du mystere au chocolat
 ## Module
 * Constructor takes a IMonitorModule reference + a pointer on the last added Module's `WINDOW` (can be NULL) + a pointer to the `WINDOW` belonging to the full display
 * `Draw(void)` draws the module in it's designated place
-
-**TO DO**
+* Has a `getWindow(void)` function to get the window representing this module
