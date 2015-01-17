@@ -1,6 +1,12 @@
 #ifndef RAM_HPP
 # define RAM_HPP
 
+#include <iostream>
+#include <unistd.h>
+#include <sys/sysctl.h>
+#include <mach/mach.h>
+#include <mach/host_info.h>
+#include <mach/vm_statistics.h>
 #include "IMonitorModule.hpp"
 
 class RAM : public IMonitorModule

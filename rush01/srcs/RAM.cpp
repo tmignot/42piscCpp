@@ -1,5 +1,13 @@
 #include "RAM.hpp"
 
+template<typename T>
+std::string to_string(T num) {
+	std::stringstream sstm;
+	sstm << num;
+
+	return (sstm.str());
+}
+
 RAM::RAM(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
 {
 	this->update();
@@ -14,7 +22,33 @@ std::vector<std::string> const	&RAM::getData() const
 
 void							RAM::update(void) const
 {
-	// TODO
+	vm_statistics_data_t 		vm;
+	mach_msg_type_number_t ic = HOST_VM_INFO_COUNT;
+	uint64_t pagesize = getpagesize();
+	struct xsw_usage s; 
+  	size_t len = sizeof(s);
+
+	host_statistics( mach_host_self(), HOST_VM_INFO, (host_info_t) &vm, &ic );
+
+	this->data.clear();
+
+	this->data.push_back(std::string("Ram avaliable\t")
+		+ to_string(pagesize * vm.free_count));
+	this->data.push_back(std::string("Ram active\t")
+		+ to_string(pagesize * vm.active_count));
+	this->data.push_back(std::string("Ram inactive\t")
+		+ to_string(pagesize * vm.inactive_count));
+	this->data.push_back(std::string("Ram wired\t")
+		+ to_string(pagesize * vm.wire_count));
+
+	if ( sysctlbyname( "vm.swapusage", &s, &len, NULL, 0 ) == 0 ) {
+	    this->data.push_back(std::string("Swap total\t")
+			+ to_string(s.xsu_total));
+		this->data.push_back(std::string("Swap avaliable\t")
+			+ to_string(s.xsu_avail));
+		this->data.push_back(std::string("Swap used\t")
+			+ to_string(s.xsu_used));
+	 }
 }
 
 int								RAM::getWidth(void) const
