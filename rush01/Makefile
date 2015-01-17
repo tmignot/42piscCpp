@@ -8,7 +8,13 @@ INCLUDE = includes
 
 SRCS = \
 	   main.cpp\
-	   Module.cpp
+	   IMonitorModule.cpp\
+	   Hostname.cpp\
+	   OS.cpp\
+	   Time.cpp\
+	   CPU.cpp\
+	   RAM.cpp\
+	   Network.cpp
 
 V = 0
 SILENCE_1 :=
