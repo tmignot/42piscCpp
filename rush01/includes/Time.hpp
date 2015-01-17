@@ -15,7 +15,7 @@ class Time : public IMonitorModule
 		Time(Time const&);
 		~Time(void);
 		Time										&operator=(Time const&);
-		virtual void								update(void) const;
+		virtual void								update(void);
 		virtual std::vector<std::string> const		&getData(void) const;
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 		virtual char								getType(void) const;

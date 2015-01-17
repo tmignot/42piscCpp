@@ -12,7 +12,7 @@ std::vector<std::string> const	&RAM::getData() const
 	return (this->data);
 }
 
-void							RAM::update(void) const
+void							RAM::update(void)
 {
 	// TODO
 }
@@ -23,7 +23,7 @@ int								RAM::getWidth(void) const
 
 	for (std::vector<std::string>::const_iterator it = this->data.begin(); it != this->data.end(); ++it)
 	{
-		if ((*it).length() > ret)
+		if ((*it).length() > static_cast<unsigned int>(ret))
 			ret = (*it).length();
 	}
 	return (ret);

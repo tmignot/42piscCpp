@@ -9,11 +9,9 @@
 class Hostname : public IMonitorModule
 {
 	private:
-		std::string				_userName;
-		std::string				_hostName;
-		std::vector<std::string> _data;
-		char					type;
-
+		char										type;
+		std::vector<std::string>					data;
+		int 										getWidth(void) const;
 	protected:
 	public:
 		Hostname(void);
@@ -24,7 +22,7 @@ class Hostname : public IMonitorModule
 		virtual std::vector<std::string> const		&getData(void) const;
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 		virtual char								getType(void) const;
-		virtual void								update(void) const;
+		virtual void								update(void);
 };
 
 #endif

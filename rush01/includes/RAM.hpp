@@ -15,7 +15,7 @@ class RAM : public IMonitorModule
 		RAM(RAM const&);
 		~RAM(void);
 		RAM											&operator=(RAM const&);
-		virtual void								update(void) const;
+		virtual void								update(void);
 		virtual std::vector<std::string> const		&getData(void) const;
 		virtual char								getType(void) const;
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const; 

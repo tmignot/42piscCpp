@@ -53,7 +53,7 @@ std::vector<std::string> const	&Time::getData(void) const
 {
 	return (this->data);
 }
-void							Time::update(void) const
+void							Time::update(void)
 {
 	//TODO
 }

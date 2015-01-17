@@ -15,7 +15,7 @@ std::vector<std::string> const	&OS::getData(void) const
 {
 	return (this->data);
 }
-void							OS::update(void) const
+void							OS::update(void)
 {
 	//TODO
 }
