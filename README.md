@@ -24,4 +24,4 @@ Step 3:
 	-	Implement said display in the WindowedDisplay.[cpp/hpp]
 	(-) Implement configuration file for this display with creation/save "on the fly"
 
-Amour chocolat <3
+Decouvrons les cles du mystere au chocolat
