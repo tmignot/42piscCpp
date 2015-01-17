@@ -2,28 +2,30 @@
 
 Mindopen::Mindopen(void) : MEMSIZE(1000), ptr(std::vector<char>(this->MEMSIZE, 0)), currentIndex(0), instructions(NULL)
 {
-	this->allowedChars = new char[9];
-	this->allowedChars[0] = '>';
-	this->allowedChars[1] = '<';
-	this->allowedChars[2] = '+';
-	this->allowedChars[3] = '-';
-	this->allowedChars[4] = '.';
-	this->allowedChars[5] = ',';
-	this->allowedChars[6] = '[';
-	this->allowedChars[7] = ']';
+	this->allowedChars = new char[10];
+	this->allowedChars[0] = 'a';
+	this->allowedChars[1] = 'b';
+	this->allowedChars[2] = 'c';
+	this->allowedChars[3] = 'd';
+	this->allowedChars[4] = 'e';
+	this->allowedChars[5] = 'f';
+	this->allowedChars[6] = 'g';
+	this->allowedChars[7] = 'h';
 	this->allowedChars[8] = ' ';
+	this->allowedChars[9] = '\n';
 }
 
 bool				Mindopen::isAllowed(const char c)
 {
 	int			i = 0;
 
-	while (i < 9)
+	while (i < 10)
 	{
 		if (this->allowedChars[i] == c)
 			return (true);
 		i++;
 	}
+	std::cout << "char not allowed : " << (int)c << std::endl;
 	return (false);
 }
 
@@ -36,10 +38,11 @@ Mindopen::~Mindopen(void)
 bool				Mindopen::IsCorrect(std::string str)
 {
     int loopLevel = 0;
+	const char *stri = str.c_str();
 
-	for(std::string::iterator it = str.begin(); it != str.end(); it++)
+	for(int i=0; stri[i]; i++)
 	{
-		char c = *it;
+		char c = stri[i];
         if (!this->isAllowed(c))
             return false;
         if (c == '[')
@@ -64,7 +67,7 @@ void				Mindopen::Parse(std::string code)
     {
         switch (code.c_str()[i])
         {
-            case '+':
+            case 'c':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new Increment();
@@ -74,7 +77,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new Increment();
                 break;
 
-            case '-':
+            case 'd':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new Decrement();
@@ -84,7 +87,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new Decrement();
                 break;
 
-            case '>':
+            case 'b':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new Forward();
@@ -94,7 +97,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new Forward();
                 break;
 
-            case '<':
+            case 'a':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new Backward();
@@ -104,7 +107,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new Backward();
                 break;
 
-            case '.':
+            case 'e':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new Output();
@@ -114,7 +117,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new Output();
                 break;
 
-            case ',':
+            case 'f':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new Input();
@@ -124,7 +127,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new Input();
                 break;
 
-            case '[':
+            case 'g':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new LoopStart();
@@ -134,7 +137,7 @@ void				Mindopen::Parse(std::string code)
 					this->instructions = new LoopStart();
                 break;
 
-            case ']':
+            case 'h':
 				if (this->instructions)
 				{
 					this->instructions->last->next = new LoopEnd();
