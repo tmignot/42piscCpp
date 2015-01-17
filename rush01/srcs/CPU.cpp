@@ -65,7 +65,7 @@ WINDOW							*CPU::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 		if (getbegy(lastwin) + getmaxy(lastwin) + h + 1 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(h, w, getbegy(lastwin) + getmaxy(lastwin) + 1, getbegx(lastwin));
+				local_win = newwin(h, w, getbegy(lastwin) + getmaxy(lastwin), getbegx(lastwin));
 		}
 		else
 		{

@@ -17,7 +17,7 @@ WINDOW							*Time::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 		if (getbegy(lastwin) + getmaxy(lastwin) + h + 1 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(h, w, getbegy(lastwin) + getmaxy(lastwin) + 1, getbegx(lastwin));
+				local_win = newwin(h, w, getbegy(lastwin) + getmaxy(lastwin), getbegx(lastwin));
 		}
 		else
 		{
@@ -55,5 +55,18 @@ std::vector<std::string> const	&Time::getData(void) const
 }
 void							Time::update(void)
 {
-	//TODO
+	time_t t = time(0);
+	struct tm * now = localtime( & t );
+	data.clear();
+	data.push_back("  Hello 42 !  ");
+	std::ostringstream date;
+  	date<< now->tm_mday << '/'
+		<< (now->tm_mon + 1) << '/'
+		<< (now->tm_year + 1900);
+	data.push_back(date.str());
+	date.str("");
+	date<< (now->tm_hour) << 'h'
+		<< now->tm_min << 'm'
+		<< now->tm_sec << 's';
+	data.push_back(date.str());
 }

@@ -2,6 +2,7 @@
 # define OS_HPP
 
 #include "IMonitorModule.hpp"
+#include <sys/sysctl.h>
 
 class OS : public IMonitorModule
 {

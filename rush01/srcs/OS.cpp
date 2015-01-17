@@ -17,7 +17,15 @@ std::vector<std::string> const	&OS::getData(void) const
 }
 void							OS::update(void)
 {
-	//TODO
+	char os[256];
+	char type[256];
+	size_t len = sizeof(os);
+
+	data.clear();
+	sysctlbyname("kern.ostype", &os, &len, NULL, 0);
+	sysctlbyname("kern.osrelease", &type, &len, NULL, 0);
+	data.push_back(std::string("OS type: ") + std::string(os));
+	data.push_back(std::string("OS Release: ") + std::string(type));
 }
 WINDOW							*OS::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 {
@@ -29,7 +37,7 @@ WINDOW							*OS::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 		if (getbegy(lastwin) + getmaxy(lastwin) + h + 1 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(h, w, getbegy(lastwin) + getmaxy(lastwin) + 1, getbegx(lastwin));
+				local_win = newwin(h, w, getbegy(lastwin) + getmaxy(lastwin), getbegx(lastwin));
 		}
 		else
 		{

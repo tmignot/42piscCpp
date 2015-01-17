@@ -2,6 +2,8 @@
 # define TIME_HPP
 
 #include "IMonitorModule.hpp"
+#include <sys/time.h>
+#include <sstream>
 
 class Time : public IMonitorModule
 {

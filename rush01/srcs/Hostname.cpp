@@ -53,14 +53,14 @@ Hostname								&Hostname::operator=(Hostname const&) {return (*this);}
 std::vector<std::string> const			&Hostname::getData(void) const { return (this->data); }
 WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 {
-	int					w = this->getWidth();
+	int					w = this->getWidth() + 2;
 	WINDOW				*local_win = NULL;
 	if (lastwin)
 	{
 		if (getbegy(lastwin) + getmaxy(lastwin) + 4 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(4, w, getbegy(lastwin) + getmaxy(lastwin) + 1, getbegx(lastwin));
+				local_win = newwin(4, w, getbegy(lastwin) + getmaxy(lastwin), getbegx(lastwin));
 		}
 		else
 		{

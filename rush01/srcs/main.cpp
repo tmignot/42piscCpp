@@ -7,9 +7,15 @@ int		main(int ac, char **av)
 	
 	if (options.shell())
 	{
-		CPU		host;
+		Time		time;
+		Hostname	host;
+		CPU			cpu;
+		OS			os;
 		monitor = new ShellDisplay();
+		monitor->addModule(time);
 		monitor->addModule(host);
+		monitor->addModule(cpu);
+		monitor->addModule(os);
 		while (getch() != ' ')
 		{
 			monitor->draw();

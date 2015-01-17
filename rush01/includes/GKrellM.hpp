@@ -8,6 +8,10 @@
 #include "Options.hpp"
 #include "Hostname.hpp"
 #include "CPU.hpp"
+#include "OS.hpp"
+#include "RAM.hpp"
+#include "Network.hpp"
+#include "Time.hpp"
 #include <unistd.h>
 
 #endif
