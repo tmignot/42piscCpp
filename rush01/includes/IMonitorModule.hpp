@@ -1,5 +1,5 @@
-#ifndef MODULE_HPP
-# define MODULE_HPP
+#ifndef I_MONITOR_MODULE_HPP
+# define I_MONITOR_MODULE_HPP
 
 class IMonitorModule
 {
