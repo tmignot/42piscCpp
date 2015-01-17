@@ -2,6 +2,10 @@
 # define CPU_HPP
 
 #include "IMonitorModule.hpp"
+#include <mach/mach.h>
+#include <mach/processor_info.h>
+#include <sys/sysctl.h>
+#include <sstream>
 
 class CPU : public IMonitorModule
 {
@@ -9,6 +13,11 @@ class CPU : public IMonitorModule
 		char										type;
 		std::vector<std::string>					data;
 		int											getWidth(void) const;
+		unsigned int								cpu_count;
+		processor_cpu_load_info_t					cpu_load;
+		mach_msg_type_number_t						cpu_msg_count;
+		float										totaltime[4][2];
+		int											temp[4];
 	protected:
 	public:
 		CPU(void);

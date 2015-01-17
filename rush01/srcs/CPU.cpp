@@ -2,6 +2,10 @@
 
 CPU::CPU(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
 {
+	for (unsigned int i = 0; i < 4; ++i) {
+		totaltime[i][0] = totaltime[i][1] = 0;
+		temp[i] = 0;
+	}
 	this->update();
 }
 CPU::CPU(CPU const &cpu) : IMonitorModule() {*this = cpu;}
@@ -14,7 +18,29 @@ std::vector<std::string> const	&CPU::getData() const
 
 void							CPU::update(void)
 {
-	// TODO
+	data.clear();
+	host_processor_info( mach_host_self(), PROCESSOR_CPU_LOAD_INFO,
+						&cpu_count,
+						reinterpret_cast<processor_info_array_t*>(&cpu_load),		
+						&cpu_msg_count);
+
+	unsigned int per_temps_count;
+	host_processor_info(mach_host_self(), PROCESSOR_TEMPERATURE,
+						&cpu_count, reinterpret_cast<int**>(&temp), &per_temps_count);
+
+	std::ostringstream sstr;
+
+	sstr << "      CPUs: " << cpu_count;
+	data.push_back(sstr.str());
+	data.push_back("   CPU load:");
+	for (unsigned int i = 0; i < cpu_count; ++i) {
+		std::ostringstream sstr2;
+		totaltime[i][0] = cpu_load[i].cpu_ticks[CPU_STATE_USER] +
+						  cpu_load[i].cpu_ticks[CPU_STATE_SYSTEM];
+		sstr2 << "   [" << i << "]: " << (totaltime[i][0] - totaltime[i][1]) << "%%  ";
+		data.push_back(sstr2.str());
+		totaltime[i][1] = totaltime[i][0];
+	}
 }
 
 int								CPU::getWidth(void) const
