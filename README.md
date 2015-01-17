@@ -12,12 +12,12 @@ Everything is awesome, everything is cool when you're part of a team
 ## Step 2
 * Define content of each module derived from the interface *i.e. the member functions and abstract methods that NEED defining **such as update_values(void) maybe?***
 * Implement each mandatory module:
-** Hostname.[cpp/hpp]
-** OS.[cpp/hpp]
-** Time.[cpp/hpp]
-** CPU.[cpp/hpp]
-** RAM.[cpp/hpp]
-** Network.[cpp/hpp]
+  * Hostname.[cpp/hpp]
+  * OS.[cpp/hpp]
+  * Time.[cpp/hpp]
+  * CPU.[cpp/hpp]
+  * RAM.[cpp/hpp]
+  * Network.[cpp/hpp]
 
 ## Step 3
 * Define which graphical library to use for the windowed display
