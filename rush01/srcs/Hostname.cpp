@@ -35,7 +35,10 @@ WINDOW									*Hostname::initWindow(WINDOW *lastwin) const
 {
 	unsigned int		w = (this->_hostName.length() >= this->_userName.length() ? this->_hostName.length() : this->_userName.length()) + 2;
 	WINDOW				*local_win;
-	local_win = newwin(4, w, getbegy(lastwin), getbegx(lastwin));
+	if (lastwin)
+		local_win = newwin(4, w, getbegy(lastwin), getbegx(lastwin));
+	else
+		local_win = newwin(4, w, 1, 1);
 	box(local_win, 0 , 0);
 	wrefresh(local_win);
 	return (local_win);
