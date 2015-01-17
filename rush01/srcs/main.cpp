@@ -6,7 +6,10 @@ int		main(int ac, char **av)
 	Options				options(ac, av);
 	
 	if (options.shell())
-		monitor = new ShellDisplay();
+	{
+		ShellDisplay *mon = new ShellDisplay();
+		mon->sillymain();
+	}
 	else if (options.windowed())
 		monitor = new WindowedDisplay();
 	else

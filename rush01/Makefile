@@ -8,6 +8,7 @@ INCLUDE = includes
 
 SRCS = \
 	   main.cpp\
+	   TUI_Module.cpp\
 	   IMonitorModule.cpp\
 	   Hostname.cpp\
 	   OS.cpp\
@@ -32,7 +33,7 @@ LINCLUDE =
 CC = $(SILENCE)g++
 RM = $(SILENCE)rm -rf
 MAKE = $(SILENCE)make V=$(V)
-INCLUDES = -I $(INCLUDE) $(addprefix -I, $(LINCLUDE))
+INCLUDES = -I $(INCLUDE) $(addprefix -I, $(LINCLUDE)) -lncurses
 SRC = $(addprefix $(SRCPATH)/, $(SRCS))
 OBJS= $(SRCS:.cpp=.o)
 SKIP_1 :=

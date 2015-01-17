@@ -20,7 +20,7 @@ class Hostname : public IMonitorModule
 		~Hostname(void);
 		Hostname			&operator=(Hostname const&);
 
-		virtual std::vector<std::string> const& getData() const;
+		std::vector<std::string> const& getData() const;
 };
 
 #endif

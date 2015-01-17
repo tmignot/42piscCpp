@@ -1,6 +1,7 @@
-#include "ShellDisplay.hpp"
+#include "TUI_Module.hpp"
+#include <list>
 
-WINDOW			*ShellDisplay::createWin(int h, int w, int x, int y){
+WINDOW			*createWin(int h, int w, int x, int y){
 
 	WINDOW *local_win;
 	local_win = newwin(h, w, x, y);
@@ -9,7 +10,7 @@ WINDOW			*ShellDisplay::createWin(int h, int w, int x, int y){
 	return local_win;
 }
 
-std::string		ShellDisplay::keyEvent(){
+std::string		keyEvent(){
 	timeout(0);
 	int  ch  = getch();
 	switch (ch){
@@ -30,7 +31,7 @@ std::string		ShellDisplay::keyEvent(){
 	}
 }
 
-void			ShellDisplay::dispatch(std::list<TUI_Module *> &li)
+void			dispatch(std::list<TUI_Module *> &li)
 {
 	int		x = 0;
 	std::list<TUI_Module*>::const_iterator	it;
@@ -38,18 +39,18 @@ void			ShellDisplay::dispatch(std::list<TUI_Module *> &li)
 	{
 		if ((*it)->win)
 			delwin((*it)->win);
-		(*it)->win = createWin( (*it)->ok_height, 200, x, 2 );
+		(*it)->win = createWin( (*it)->ok_height, 20, x, 2 );
 		x += (*it)->ok_height;
 	}
 }
 
-void			ShellDisplay::insert(std::list<TUI_Module *> &li)
+void			insert(std::list<TUI_Module *> &li)
 {
-	li.push_front( new TUI_Module( new Hostname ) );
-	//dispatch( li );
+	li.push_front( new TUI_Module );
+	dispatch( li );
 }
 
-int		ShellDisplay::sillymain( void )
+int		main( void )
 {
 	// init ncurses
 	initscr();
@@ -58,27 +59,29 @@ int		ShellDisplay::sillymain( void )
 	refresh();
 
 	std::list<TUI_Module *> li;
-	insert(li);
-	//(*li.begin())->active = true;
-	/*
-	insert(li);
-	insert(li);
-	*/
+	li.push_front( new TUI_Module );
+	(*li.begin())->active = true;
+	li.push_front( new TUI_Module );
+	li.push_front( new TUI_Module );
+	li.push_front( new TUI_Module );
+	dispatch(li);
 	std::list<TUI_Module*>::const_iterator	it;
-	/*
 	for (it = li.begin(); it != li.end(); ++it)
 	{
+		(*it)->content = "bonjour";
 		(*it)->update();
 		(*it)->draw();
 	}
-	*/
+	//TUI_Module	mymodule( createWin(3, 20, 2, 2 ));
+	//wprintw( mymodule.win, "coucou" );
+	//refresh();
+	//wrefresh(mymodule.win);
+	//refresh();
 	getch();
+	insert(li);
+	getch();
+
 	// closing, freeing & returning
 	endwin();
 	return ( 0 );
 }
-
-ShellDisplay::ShellDisplay(void) : IMonitorDisplay() {}
-ShellDisplay::ShellDisplay(ShellDisplay const &shell) : IMonitorDisplay() {*this = shell;}
-ShellDisplay::~ShellDisplay(void) {}
-ShellDisplay				&ShellDisplay::operator=(ShellDisplay const&) {return (*this);}
