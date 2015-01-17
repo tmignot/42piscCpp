@@ -32,6 +32,12 @@ void							RAM::update(void) const
 
 	this->data.clear();
 
+	uint64_t total_ram;
+	if (sysctlbyname( "hw.memsize", &toto, &len, NULL, 0) == -1)
+    	total_ram = 0;
+
+    this->data.push_back(std::string("Ram total\t")
+		+ to_string(total_ram));
 	this->data.push_back(std::string("Ram avaliable\t")
 		+ to_string(pagesize * vm.free_count));
 	this->data.push_back(std::string("Ram active\t")
