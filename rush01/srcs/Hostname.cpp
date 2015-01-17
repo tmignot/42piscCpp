@@ -38,22 +38,22 @@ WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 	WINDOW				*local_win = NULL;
 	if (lastwin)
 	{
-		if (getmaxy(lastwin) + 3 < getmaxy(displaywin))
+		if (getbegy(lastwin) + getmaxy(lastwin) + 5 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(4, w, getmaxy(lastwin), getbegx(lastwin));
+				local_win = newwin(4, w, getbegy(lastwin) + getmaxy(lastwin) + 1, getbegx(lastwin));
 		}
 		else
 		{
-			if (getmaxx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(4, w, 1, getmaxx(lastwin) + 1);
+			if (getbegx(lastwin) + getmaxx(lastwin) + 1 + w < getmaxx(displaywin))
+				local_win = newwin(4, w, 1, getbegx(lastwin) + getmaxx(lastwin) + 1);
 		}
 	}
 	else
 		local_win = newwin(4, w, 1, 1);
 	if (local_win)
 	{
-		box(local_win, 0 , 0);
+		box(local_win, 0, 0);
 		wrefresh(local_win);
 	}
 	return (local_win);

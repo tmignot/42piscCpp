@@ -23,7 +23,6 @@ Module::~Module(void)
 		wborder(this->twin, ' ', ' ', ' ',' ',' ',' ',' ',' ');
 		wrefresh(this->twin);
 		delwin(this->twin);
-		//this->twin = NULL;
 	}
 }
 
@@ -32,11 +31,15 @@ void					Module::draw(void) const
 	//this->module->update();
 	std::vector<std::string>		data = this->module->getData();
 
-	for (unsigned int i = 0; i < data.size(); ++i)
+	if (this->twin)
 	{
-		mvwprintw(this->twin, i + 1, 1, data[i].c_str());
+		box(this->twin, 0, 0);
+		for (unsigned int i = 0; i < data.size(); ++i)
+		{
+			mvwprintw(this->twin, i + 1, 1, data[i].c_str());
+		}
+		wrefresh(this->twin);
 	}
-	wrefresh(this->twin);
 }
 
 WINDOW					*Module::getWindow(void) const

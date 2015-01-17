@@ -21,6 +21,7 @@ ShellDisplay				&ShellDisplay::operator=(ShellDisplay const &display)
 void						ShellDisplay::draw(void) const
 {
 	clear();
+	box(this->win, 0, 0);
 	wrefresh(this->win);
 	for (std::list<Module*>::const_iterator it = this->modules.begin(); it != this->modules.end(); ++it)
 	{

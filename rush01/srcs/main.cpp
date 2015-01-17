@@ -10,8 +10,11 @@ int		main(int ac, char **av)
 		Hostname		host;
 		monitor = new ShellDisplay();
 		monitor->addModule(host);
-		Hostname		second;
-		monitor->addModule(second);
+		for(int i = 0;i < 20;++i)
+		{
+			host = Hostname();
+			monitor->addModule(host);
+		}
 		while (getch() != ' ')
 		{
 			monitor->draw();
