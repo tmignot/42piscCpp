@@ -4,15 +4,15 @@ Everything is awesome, everything is cool when you're part of a team
 # RUSH_01
 
 ## Step 1
-* Implement ncurse display using the ShellDisplay.[cpp/hpp] class
-* Implement std container to contain a non finite list of modules to display
+* [~~Implement ncurse display using the ShellDisplay.[cpp/hpp] class~~](rush01/srcs/ShellDisplay.cpp)
+* ~~Implement std container to contain a non finite list of modules to display~~ **std::list**
 * [~~Define a method of selection for type of display to use and how we make this work USING the mandatory interface~~](rush01/includes/Options.hpp)
 * Implement configuration file creation/save "on the fly"
 
 ## Step 2
 * Define content of each module derived from the interface *i.e. the member functions and abstract methods that NEED defining* **such as update_values(void) maybe?**
 * Implement each mandatory module: **use shell commands with `exec *` and `fork` please**
-  * Hostname.cpp/hpp
+  * ~~Hostname.cpp/hpp~~
   * OS.cpp/hpp
   * [Time.cpp/hpp](http://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c/997988#997988)
   * CPU.cpp/hpp - Model - Clock Speed - Number of Cores - Activity
@@ -42,5 +42,5 @@ Decouvrons les cles du mystere au chocolat
 
 ## Module
 * Constructor takes a IMonitorModule reference + a pointer on the last added Module's `WINDOW` (can be NULL) + a pointer to the `WINDOW` belonging to the full display
-* `Draw(void)` draws the module in it's designated place
+* `draw(void)` draws the module in it's designated place
 * Has a `getWindow(void)` function to get the window representing this module
