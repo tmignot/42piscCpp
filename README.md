@@ -11,7 +11,7 @@ Everything is awesome, everything is cool when you're part of a team
 
 ## Step 2
 * Define content of each module derived from the interface *i.e. the member functions and abstract methods that NEED defining* **such as update_values(void) maybe?**
-* Implement each mandatory module:
+* Implement each mandatory module: **use shell commands with `exec *` and `fork` please**
   * Hostname.[cpp/hpp]
   * OS.[cpp/hpp]
   * Time.[cpp/hpp]
