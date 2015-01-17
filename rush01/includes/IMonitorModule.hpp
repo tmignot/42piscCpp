@@ -9,7 +9,7 @@ class IMonitorModule
 		IMonitorModule(void);
 		IMonitorModule(IMonitorModule const&);
 		~IMonitorModule(void);
-		IMonitorModule				&operator=(IMonitorModule const&);
+		IMonitorModule							&operator=(IMonitorModule const&);
 };
 
 #endif

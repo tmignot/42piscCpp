@@ -10,8 +10,10 @@ class WindowedDisplay : public IMonitorDisplay
 	public:
 		WindowedDisplay(void);
 		WindowedDisplay(WindowedDisplay const&);
-		~WindowedDisplay(void);
+		virtual ~WindowedDisplay(void);
 		WindowedDisplay			&operator=(WindowedDisplay const&);
+		virtual void			draw(void);
+		virtual void			addModule(Module&);
 };
 
 #endif

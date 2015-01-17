@@ -1,6 +1,8 @@
 #ifndef I_MONITOR_DISPLAY_HPP
 # define I_MONITOR_DISPLAY_HPP
 
+#include "Module.hpp"
+
 class IMonitorDisplay
 {
 	private:
@@ -8,8 +10,10 @@ class IMonitorDisplay
 	public:
 		IMonitorDisplay(void);
 		IMonitorDisplay(IMonitorDisplay const&);
-		~IMonitorDisplay(void);
+		virtual ~IMonitorDisplay(void)=0;
 		IMonitorDisplay				&operator=(IMonitorDisplay const&);
+		virtual void				draw(void)=0;
+		virtual void				addModule(Module &)=0;
 };
 
 #endif

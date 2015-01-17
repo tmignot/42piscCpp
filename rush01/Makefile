@@ -1,7 +1,7 @@
 NAME = ft_gkrellm
 LIBNAME =
 C = \033[0;36m
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 SRCPATH = srcs
 OBJPATH = obj
 INCLUDE = includes
@@ -26,7 +26,7 @@ SILENCE_1 :=
 SILENCE_0 :=@
 SILENCE = $(SILENCE_$(V))
 LNAME = $(addprefix lib, $(LIBNAME))
-CLNAME = $(addprefix -l, $(LIBNAME))
+CLNAME = $(addprefix -l, $(LIBNAME)) -lncurses
 LIB = $(addprefix -L, $(addsuffix /, $(LNAME))) $(CLNAME)
 LINCLUDE =
 CC = $(SILENCE)g++
