@@ -10,7 +10,7 @@ Everything is awesome, everything is cool when you're part of a team
 * Implement configuration file creation/save "on the fly"
 
 ## Step 2
-* Define content of each module derived from the interface *i.e. the member functions and abstract methods that NEED defining **such as update_values(void) maybe?***
+* Define content of each module derived from the interface *i.e. the member functions and abstract methods that NEED defining* **such as update_values(void) maybe?**
 * Implement each mandatory module:
   * Hostname.[cpp/hpp]
   * OS.[cpp/hpp]
