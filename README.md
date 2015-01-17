@@ -25,3 +25,23 @@ Everything is awesome, everything is cool when you're part of a team
 * Implement configuration file for this display with creation/save "on the fly"
 
 Decouvrons les cles du mystere au chocolat
+
+# Class Usage
+## IMonitorDisplay
+* Derived classes are constructed without parameters for the moment (config file needs implementation)
+* Draw method call the draw method of every module in it's list
+### ShellDisplay
+* Has a Window representing the working window
+* Has a list of Module class instance pointers representing each modules
+
+## IMonitorModule
+* Derives classes are constructed without parameters for the moment (maybe a configuration file ?)
+* Derived classes have a `std::vector<std::string>` representing each line to be displayed in the output returned in a `getData(void)` method
+* Derived classes **should** have an update function to update the data displayed
+* Derived classes have a `initWindow` method which returns a pointer to a correctly sized window in the right place
+
+## Module
+* Constructor takes a IMonitorModule reference + a pointer on the last added Module's `WINDOW` (can be NULL) + a pointer to the `WINDOW` belonging to the full display
+* `Draw(void)` draws the module in it's designated place
+
+**TO DO**
