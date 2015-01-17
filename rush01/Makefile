@@ -15,7 +15,8 @@ SRCS = \
 	   CPU.cpp\
 	   RAM.cpp\
 	   Network.cpp\
-	   IMonitorDisplay.cpp
+	   IMonitorDisplay.cpp\
+	   ShellDisplay.cpp
 
 V = 0
 SILENCE_1 :=
