@@ -14,7 +14,7 @@ Everything is awesome, everything is cool when you're part of a team
 * Implement each mandatory module: **use shell commands with `exec *` and `fork` please**
   * Hostname.cpp/hpp
   * OS.cpp/hpp
-  * Time.cpp/hpp
+  * [Time.cpp/hpp](http://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c/997988#997988)
   * CPU.cpp/hpp
   * [RAM.cpp/hpp](http://nadeausoftware.com/articles/2012/09/c_c_tip_how_get_physical_memory_size_system)
   * Network.cpp/hpp
