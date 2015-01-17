@@ -27,13 +27,14 @@ void							RAM::update(void) const
 	uint64_t pagesize = getpagesize();
 	struct xsw_usage s; 
   	size_t len = sizeof(s);
+  	size_t len2 = sizeof(uint64_t);
 
 	host_statistics( mach_host_self(), HOST_VM_INFO, (host_info_t) &vm, &ic );
 
 	this->data.clear();
 
 	uint64_t total_ram;
-	if (sysctlbyname( "hw.memsize", &toto, &len, NULL, 0) == -1)
+	if (sysctlbyname( "hw.memsize", &toto, &len2, NULL, 0) == -1)
     	total_ram = 0;
 
     this->data.push_back(std::string("Ram total\t")
