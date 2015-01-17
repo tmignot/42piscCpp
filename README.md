@@ -22,6 +22,6 @@ Step 2:
 Step 3:
 	-	Define which graphical library to use for the windowed display
 	-	Implement said display in the WindowedDisplay.[cpp/hpp]
-	(-) Implement configuration file for this display with creation/save "on the fly"
+	(-) 	Implement configuration file for this display with creation/save "on the fly"
 
 Decouvrons les cles du mystere au chocolat
