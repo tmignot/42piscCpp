@@ -6,7 +6,7 @@ Everything is awesome, everything is cool when you're part of a team
 ## Step 1
 * Implement ncurse display using the ShellDisplay.[cpp/hpp] class
 * Implement std container to contain a non finite list of modules to display
-* Define a method of selection for type of display to use and how we make this work USING the mandatory interface
+* ~~Define a method of selection for type of display to use and how we make this work USING the mandatory interface~~
 * Implement configuration file creation/save "on the fly"
 
 ## Step 2
