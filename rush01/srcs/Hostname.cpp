@@ -31,15 +31,29 @@ Hostname::~Hostname(void) {}
 Hostname								&Hostname::operator=(Hostname const&) {return (*this);}
 
 std::vector<std::string> const			&Hostname::getData(void) const { return _data; }
-WINDOW									*Hostname::initWindow(WINDOW *lastwin) const
+WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 {
-	unsigned int		w = (this->_hostName.length() >= this->_userName.length() ? this->_hostName.length() : this->_userName.length()) + 2;
-	WINDOW				*local_win;
+	int					w = (this->_hostName.length() >= this->_userName.length() ? this->_hostName.length() : this->_userName.length()) + 2;
+	WINDOW				*local_win = NULL;
 	if (lastwin)
-		local_win = newwin(4, w, getbegy(lastwin), getbegx(lastwin));
+	{
+		if (getmaxy(lastwin) + 5 < getmaxy(displaywin))
+		{
+			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
+				local_win = newwin(4, w, getmaxy(lastwin) + 1, getbegx(lastwin));
+		}
+		else
+		{
+			if (getmaxx(lastwin) + 1 + w < getmaxx(displaywin))
+				local_win = newwin(4, w, 1, getmaxx(lastwin) + 1);
+		}
+	}
 	else
 		local_win = newwin(4, w, 1, 1);
-	box(local_win, 0 , 0);
-	wrefresh(local_win);
+	if (local_win)
+	{
+		box(local_win, 0 , 0);
+		wrefresh(local_win);
+	}
 	return (local_win);
 }

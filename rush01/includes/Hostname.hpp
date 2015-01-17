@@ -21,7 +21,7 @@ class Hostname : public IMonitorModule
 		Hostname									&operator=(Hostname const&);
 
 		virtual std::vector<std::string> const		&getData(void) const;
-		virtual WINDOW								*initWindow(WINDOW*) const;
+		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 };
 
 #endif
