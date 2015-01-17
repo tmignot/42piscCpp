@@ -12,6 +12,8 @@ class WindowedDisplay : public IMonitorDisplay
 		WindowedDisplay(WindowedDisplay const&);
 		~WindowedDisplay(void);
 		WindowedDisplay			&operator=(WindowedDisplay const&);
+		virtual void			draw(void) const;
+		virtual void			addModule(IMonitorModule&);
 };
 
 #endif

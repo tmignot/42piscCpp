@@ -15,8 +15,9 @@ class IMonitorModule
 		virtual ~IMonitorModule(void);
 		IMonitorModule								&operator=(IMonitorModule const&);
 
-		virtual std::vector<std::string> const 		&getDatas(void) const = 0;
+		virtual std::vector<std::string> const 		&getData(void) const = 0;
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const = 0;
+		virtual char								getType(void) const = 0;
 };
 
 #endif

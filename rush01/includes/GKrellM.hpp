@@ -6,5 +6,7 @@
 #include "ShellDisplay.hpp"
 #include "WindowedDisplay.hpp"
 #include "Options.hpp"
+#include "Hostname.hpp"
+#include <unistd.h>
 
 #endif

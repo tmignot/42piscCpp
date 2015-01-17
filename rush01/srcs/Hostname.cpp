@@ -1,6 +1,7 @@
 #include "Hostname.hpp"
+#include <iostream>
 
-Hostname::Hostname(void) : IMonitorModule() 
+Hostname::Hostname(void) : IMonitorModule(), type('i')
 {
 	{
 		char host[32];
@@ -22,8 +23,8 @@ Hostname::Hostname(void) : IMonitorModule()
 		_userName = user;
 	}		
 	_data.reserve(2);
-	_data[0] = _userName;
-	_data[1] = _hostName;
+	_data.push_back(_userName);
+	_data.push_back(_hostName);
 }
 
 Hostname::Hostname(Hostname const &hostname) : IMonitorModule() {*this = hostname;}
@@ -37,10 +38,10 @@ WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 	WINDOW				*local_win = NULL;
 	if (lastwin)
 	{
-		if (getmaxy(lastwin) + 5 < getmaxy(displaywin))
+		if (getmaxy(lastwin) + 3 < getmaxy(displaywin))
 		{
 			if (getbegx(lastwin) + 1 + w < getmaxx(displaywin))
-				local_win = newwin(4, w, getmaxy(lastwin) + 1, getbegx(lastwin));
+				local_win = newwin(4, w, getmaxy(lastwin), getbegx(lastwin));
 		}
 		else
 		{
@@ -56,4 +57,9 @@ WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 		wrefresh(local_win);
 	}
 	return (local_win);
+}
+
+char									Hostname::getType(void) const
+{
+	return (this->type);
 }

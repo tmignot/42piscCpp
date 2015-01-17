@@ -3,17 +3,22 @@
 
 #include "IMonitorModule.hpp"
 #include <cstdlib>
+#include <ncurses.h>
 
 class Module
 {
 	private:
 		IMonitorModule		*module;
-		Module(Module const&);
-		Module				&operator=(Module const&);
+		WINDOW				*twin;
 	protected:
 	public:
-		Module(void);
+		Module(IMonitorModule&, WINDOW*, WINDOW*);
 		~Module(void);
+		void				draw(void) const;
+		WINDOW				*getWindow(void) const;
+		Module(Module const&);
+		Module				&operator=(Module const&);
+		Module(void);
 };
 
 #endif
