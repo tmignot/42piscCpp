@@ -8,6 +8,7 @@ INCLUDE = includes
 
 SRCS = \
 	   main.cpp\
+	   Module.cpp
 
 V = 0
 SILENCE_1 :=
