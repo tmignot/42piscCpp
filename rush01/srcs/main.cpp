@@ -14,7 +14,10 @@ std::string		keyEvent( IMonitorDisplay *mon ){
 	switch (ch){
 		case 'o':
 			mon->addModule('o');
-			return "haut";
+			return "o";
+		case 'c':
+			mon->addModule('c');
+			return "c";
 		case ' ':
 			myexit( mon );
 			return "sp";
@@ -38,8 +41,6 @@ int		main(int ac, char **av)
 		monitor = new ShellDisplay();
 		monitor->addModule('t');
 		monitor->addModule('h');
-		monitor->addModule('c');
-		monitor->addModule('o');
 		while ( 1 )
 		{
 			keyEvent( monitor );
