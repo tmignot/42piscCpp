@@ -1,0 +1,12 @@
+prefix=/nfs/zfs-student-2/users/2013_paris/tmignot/pisc-cpp/githubD05/rush01/lib/SDL2_ttf-2.0.12/../SDL2_ttf
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SDL2_ttf
+Description: ttf library for Simple DirectMedia Layer with FreeType 2 support
+Version: 2.0.12
+Requires: sdl2 >= 2.0.0
+Libs: -L${libdir} -lSDL2_ttf
+Cflags: -I${includedir}/SDL2
+
