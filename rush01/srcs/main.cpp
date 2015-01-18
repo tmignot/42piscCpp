@@ -10,24 +10,24 @@ void		myexit( IMonitorDisplay *mon )
 
 std::string		keyEvent( IMonitorDisplay *mon ){
 	timeout(0);
-	int  ch  = getch();
-	switch (ch){
-		case 'o':
-			mon->addModule('o');
-			return "o";
-		case 'c':
-			mon->addModule('c');
-			return "c";
-		case ' ':
-			myexit( mon );
-			return "sp";
-		case 27:	// escape
-			if (getch() == -1)
-				return "escape";
-			return "segfault";
-		default:
-			return "je met ce que je veux!";
+	int  ch;
+	while ((ch = getch()) != ERR) {
+		switch (ch) {
+			case 'o':
+				mon->addModule('o');
+				return "haut";
+			case ' ':
+				myexit( mon );
+				return "sp";
+			case 27:	// escape
+				if (getch() == -1)
+					return "escape";
+				return "segfault";
+			default:
+				continue;
+		}
 	}
+	return "je met ce que je veux!";
 }
 
 
@@ -41,6 +41,9 @@ int		main(int ac, char **av)
 		monitor = new ShellDisplay();
 		monitor->addModule('t');
 		monitor->addModule('h');
+		monitor->addModule('c');
+		monitor->addModule('o');
+		monitor->draw();
 		while ( 1 )
 		{
 			keyEvent( monitor );
