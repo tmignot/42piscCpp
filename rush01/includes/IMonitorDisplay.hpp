@@ -13,7 +13,7 @@ class IMonitorDisplay
 		virtual ~IMonitorDisplay(void);
 		IMonitorDisplay				&operator=(IMonitorDisplay const&);
 		virtual void				draw(void) const = 0;
-		virtual void				addModule(IMonitorModule&) = 0;
+		virtual void				addModule(char code) = 0;
 };
 
 #endif

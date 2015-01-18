@@ -5,4 +5,4 @@ WindowedDisplay::WindowedDisplay(WindowedDisplay const &windowed) : IMonitorDisp
 WindowedDisplay::~WindowedDisplay(void) {}
 WindowedDisplay				&WindowedDisplay::operator=(WindowedDisplay const&) {return (*this);}
 void						WindowedDisplay::draw(void) const {}
-void						WindowedDisplay::addModule(IMonitorModule&) {}
+void						WindowedDisplay::addModule(char code) {(void)code;}

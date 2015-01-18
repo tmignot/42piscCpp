@@ -1,5 +1,33 @@
 #include "GKrellM.hpp"
 
+
+void		myexit( IMonitorDisplay *mon )
+{
+	if (mon)
+		delete mon;
+	exit(0);
+}
+
+std::string		keyEvent( IMonitorDisplay *mon ){
+	timeout(0);
+	int  ch  = getch();
+	switch (ch){
+		case 'o':
+			mon->addModule('o');
+			return "haut";
+		case ' ':
+			myexit( mon );
+			return "sp";
+		case 27:	// escape
+			if (getch() == -1)
+				return "escape";
+			return "segfault";
+		default:
+			return "je met ce que je veux!";
+	}
+}
+
+
 int		main(int ac, char **av)
 {
 	IMonitorDisplay		*monitor = NULL;
@@ -7,17 +35,14 @@ int		main(int ac, char **av)
 	
 	if (options.shell())
 	{
-		Time		time;
-		Hostname	host;
-		CPU			cpu;
-		OS			os;
 		monitor = new ShellDisplay();
-		monitor->addModule(time);
-		monitor->addModule(host);
-		monitor->addModule(cpu);
-		monitor->addModule(os);
-		while (getch() != ' ')
+		monitor->addModule('t');
+		monitor->addModule('h');
+		monitor->addModule('c');
+		monitor->addModule('o');
+		while ( 1 )
 		{
+			keyEvent( monitor );
 			monitor->draw();
 			sleep(1);
 		}
@@ -26,7 +51,5 @@ int		main(int ac, char **av)
 		monitor = new WindowedDisplay();
 	else
 		options.printErrors();
-	if (monitor)
-		delete monitor;
-	return (0);
+	myexit(monitor);
 }
