@@ -12,7 +12,6 @@ int main()
     mstack.push(48643);
     mstack.push(546);
     mstack.push(7637);
-    //[...]
     mstack.push(6448);
     mstack.push(646466);
     mstack.push(-42);

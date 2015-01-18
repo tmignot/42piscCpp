@@ -5,16 +5,15 @@
 #include    <iostream>
 #include    <iterator>
 
-template<typename T>
+template<class T>
 class MutantStack : public std::stack<T>
 {
 public:
-    MutantStack();
-    ~MutantStack();
-    MutantStack( MutantStack const &);
-    MutantStack & operator=(MutantStack const &);
+    MutantStack<T>() {}
+    ~MutantStack<T>() {}
+    MutantStack<T>(MutantStack<T> const& copy) { *this = copy; }
+    MutantStack<T>& operator=(MutantStack<T> const& rhs) { *this = rhs; return *this; }
 
-    //Operator functions
     class iterator : public std::iterator<std::input_iterator_tag, T>
     {
         T* p;
@@ -61,11 +60,34 @@ public:
         }
     };
 
-    MutantStack<T>::iterator begin();
-    MutantStack<T>::iterator end();
+    MutantStack<T>::iterator begin() {
+		MutantStack<T> yop;
+		T *last;
+		while (!this->empty())
+		{
+			yop.push(this->top());
+			this->pop();
+		}
+
+		this->push(yop.top());
+		last = &(this->top());
+		yop.pop();
+		while (!yop.empty())
+		{
+			this->push(yop.top());
+			yop.pop();
+		}
+		MutantStack<T>::iterator begin (last);
+		return (begin);
+	}
+
+    MutantStack<T>::iterator end() {
+		T *first;
+		first = &(this->top());
+		MutantStack<T>::iterator end (first + 1);
+		return (end);
+	}
+
 };
-
-#include "mutantstack.cpp"
-
 
 #endif /* _MUTANTSTACK_H_ */

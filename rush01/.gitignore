@@ -1,0 +1,5 @@
+*.swp
+*/**/*.swp
+*/**/ft_gkrellm
+*/**/obj
+*/**/test
