@@ -14,5 +14,6 @@
 #include "Network.hpp"
 #include "Time.hpp"
 #include <unistd.h>
+#include "SDL2/SDL.h"
 
 #endif

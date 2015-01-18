@@ -34,16 +34,29 @@ std::string		keyEvent( IMonitorDisplay *mon, bool &running ){
 	return "je met ce que je veux!";
 }
 
+void	handle_sdl_events(IMonitorDisplay* mon, bool& running){
+	SDL_Event e;
+	while (SDL_PollEvent(&e)) {
+		if (e.type == SDL_KEYDOWN) {
+			switch (e.key.keysym.sym) {
+				case SDLK_ESCAPE: running = false; break;
+				default: break;
+			}
+		}
+	}
+	(void)mon;
+}
+
 int		main(int ac, char **av)
 {
-	IMonitorDisplay		*monitor = NULL;
 	Options				options(ac, av);
+	bool running = true;
 	
 	if (options.shell())
 	{
+		ShellDisplay* monitor = NULL;
 		monitor = new ShellDisplay();
 		monitor->draw();
-		bool running = true;
 		while ( running )
 		{
 			keyEvent( monitor, running );
@@ -53,8 +66,28 @@ int		main(int ac, char **av)
 			usleep(100000);
 		}
 	}
-	else if (options.windowed())
+	else if (options.windowed()) {
+		WindowedDisplay* monitor;
 		monitor = new WindowedDisplay();
+		CPU 		cpu;
+		RAM			ram;
+		Hostname	host;
+		Network		net;
+		OS			os;
+		Time		time;
+		monitor->addModule(&time);
+		monitor->addModule(&host);
+		monitor->addModule(&os);
+		monitor->addModule(&cpu);
+		monitor->addModule(&ram);
+		monitor->addModule(&net);
+		while (running) {
+			handle_sdl_events(monitor, running);
+			monitor->update();
+			monitor->draw();
+			SDL_Delay(100);
+		}
+	}
 	else
 		options.printErrors();
 	return 0;
