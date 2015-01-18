@@ -1,10 +1,13 @@
 #include "Module.hpp"
 
-Module::Module(void) : module(NULL), twin(NULL), undefined("UNDEFINED") {}
+Module::Module(void) : module(NULL), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0) {}
 
-Module::Module(IMonitorModule &module, WINDOW *lastwin, WINDOW *displaywin) : module(&module), twin(NULL), undefined("UNDEFINED")
+Module::Module(IMonitorModule &module, WINDOW *lastwin, WINDOW *displaywin) : module(&module), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0)
 {
-	twin = this->module->initWindow(lastwin, displaywin);
+	this->data = this->module->getData();
+	this->w = this->getWidth();
+	this->h = this->getHeight();
+	twin = this->initWindow(lastwin, displaywin);
 }
 
 Module::Module(Module const &module) {*this = module;}
@@ -27,20 +30,25 @@ Module::~Module(void)
 	}
 }
 
-void					Module::draw(void) const
+void					Module::draw(void)
 {
 	this->module->update();
-	std::vector<std::string>		data = this->module->getData();
+	this->data = this->module->getData();
 
 	if (this->twin)
 	{
 		box(this->twin, 0, 0);
-		for (unsigned int i = 0; i < data.size(); ++i)
+		for (unsigned int i = 0; i < this->data.size(); ++i)
 		{
-			mvwprintw(this->twin, i + 1, 1, data[i].c_str());
+			mvwprintw(this->twin, i + 1, 1, this->data[i].c_str());
 		}
 		wrefresh(this->twin);
 	}
+}
+
+int						Module::getHeight(void) const
+{
+	return (this->data.size());
 }
 
 WINDOW					*Module::getWindow(void) const
@@ -56,4 +64,53 @@ bool					Module::operator==(Module const &module)
 std::string const		&Module::getName(void) const
 {
 	return (this->module ? module->getName() : this->undefined);
+}
+
+int								Module::getWidth(void) const
+{
+	int			ret = 0;
+
+	for (std::vector<std::string>::const_iterator it = this->data.begin(); it != this->data.end(); ++it)
+	{
+		if ((*it).length() > static_cast<unsigned int>(ret))
+			ret = (*it).length();
+	}
+	return (ret);
+}
+
+WINDOW							*Module::initWindow(WINDOW *lastwin, WINDOW *displaywin)
+{
+	int							w = this->w + 2;
+	int							h = this->h + 2;
+	WINDOW						*local_win = NULL;
+	if (lastwin)
+	{
+		if (getbegy(lastwin) + getmaxy(lastwin) + h + 1 < getbegy(displaywin) + getmaxy(displaywin))
+		{
+			if (getbegx(lastwin) + 1 + w < getbegx(displaywin) + getmaxx(displaywin))
+				local_win = newwin(h, w, getbegy(displaywin) + getbegy(lastwin) + getmaxy(lastwin), getbegx(displaywin) + getbegx(lastwin));
+		}
+		else
+		{
+			if (getbegx(lastwin) + getmaxx(lastwin) + 1 + w < getbegx(displaywin) + getmaxx(displaywin))
+				local_win = newwin(h, w, getbegy(displaywin) + 1, getbegx(displaywin) + getbegx(lastwin) + getmaxx(lastwin) + 1);
+		}
+	}
+	else
+		local_win = newwin(h, w, getbegy(displaywin) + 1, getbegx(displaywin) + 1);
+	if (local_win)
+	{
+		box(local_win, 0, 0);
+		wrefresh(local_win);
+	}
+	return (local_win);
+}
+
+void							Module::setDimensions(int h, int w, WINDOW *lastwin, WINDOW *displaywin)
+{
+	this->h = h;
+	this->w = w;
+	WINDOW			*tmp = this->initWindow(lastwin, displaywin);
+	delwin(this->twin);
+	this->twin = tmp;
 }

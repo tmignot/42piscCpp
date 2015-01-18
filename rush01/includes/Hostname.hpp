@@ -11,7 +11,6 @@ class Hostname : public IMonitorModule
 	private:
 		char										type;
 		std::vector<std::string>					data;
-		int 										getWidth(void) const;
 		std::string									name;
 	protected:
 	public:
@@ -21,7 +20,6 @@ class Hostname : public IMonitorModule
 		Hostname									&operator=(Hostname const&);
 
 		virtual std::vector<std::string> const		&getData(void) const;
-		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 		virtual char								getType(void) const;
 		virtual void								update(void);
 		virtual std::string const					&getName(void) const;

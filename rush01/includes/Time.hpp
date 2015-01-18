@@ -11,7 +11,6 @@ class Time : public IMonitorModule
 		char										type;
 		std::vector<std::string>					data;
 		std::string									name;
-		int											getWidth(void) const;
 	protected:
 	public:
 		Time(void);
@@ -20,7 +19,6 @@ class Time : public IMonitorModule
 		Time										&operator=(Time const&);
 		virtual void								update(void);
 		virtual std::vector<std::string> const		&getData(void) const;
-		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 		virtual char								getType(void) const;
 		virtual std::string const					&getName(void) const;
 };

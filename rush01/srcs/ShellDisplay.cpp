@@ -1,6 +1,6 @@
 #include "ShellDisplay.hpp"
 
-ShellDisplay::ShellDisplay(void) : IMonitorDisplay(), win(NULL), modules(std::list<Module>()), inst_mods(std::map<char, bool>())
+ShellDisplay::ShellDisplay(void) : IMonitorDisplay(), win(NULL), modules(std::list<Module*>()), inst_mods(std::map<char, bool>())
 {
 	initscr();
 	nodelay(stdscr, TRUE);
@@ -25,6 +25,11 @@ ShellDisplay::ShellDisplay(void) : IMonitorDisplay(), win(NULL), modules(std::li
 ShellDisplay::ShellDisplay(ShellDisplay const &shell) : IMonitorDisplay() {*this = shell;}
 ShellDisplay::~ShellDisplay(void) {
 	//freeing module objects instanciated in addModule
+	for(std::list<Module*>::iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+	{
+		delete *it;
+		it = this->modules.erase(it);
+	}
 	this->modules.clear();
 	delete this->iModules['h'];
 	delete this->iModules['c'];
@@ -45,9 +50,9 @@ void						ShellDisplay::draw(void) const
 	clear();
 	box(this->win, 0, 0);
 	wrefresh(this->win);
-	for (std::list<Module>::const_iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+	for (std::list<Module*>::const_iterator it = this->modules.begin(); it != this->modules.end(); ++it)
 	{
-		(*it).draw();
+		(const_cast<Module*>(*it))->draw();
 	}
 }
 std::string const			&ShellDisplay::parseCommand( char code )
@@ -61,32 +66,104 @@ std::string const			&ShellDisplay::parseCommand( char code )
 void						ShellDisplay::addModule( char code )//IMonitorModule &imodule)
 {
 	Module			*module;
+	module = new Module(*(this->iModules[code]), NULL, this->win);
+	int			h = (module->getHeight() > this->getMaxHeight() ? module->getHeight() : this->getMaxHeight()), w = (module->getWidth() > this->getMaxWidth() ? module->getWidth() : this->getMaxWidth());
 	if (this->modules.size())
 	{
-		module = new Module(*(this->iModules[code]), this->modules.back().getWindow(), this->win);
+		if (!(this->modules.front()->getWidth() >= w && this->modules.front()->getHeight() >= h))
+		{
+			Module			*tmp = NULL;
+			for (std::list<Module*>::iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+			{
+				if (tmp)
+					((*it))->setDimensions(h, w, tmp->getWindow(), this->win);
+				else
+					((*it))->setDimensions(h, w, NULL, this->win);
+				tmp = const_cast<Module*>(*it);
+			}
+		}
+		for (std::list<Module*>::iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+		{
+			if (getbegy((*it)->getWindow()) - h > getbegy(this->win) + 1)
+			{
+				this->modules.insert(it, module);
+				Module		*tmp = NULL;
+				for (std::list<Module*>::iterator itp = this->modules.begin(); itp != this->modules.end(); ++itp)
+				{
+					if (tmp)
+						((*itp))->setDimensions(h, w, tmp->getWindow(), this->win);
+					else
+						((*itp))->setDimensions(h, w, NULL, this->win);
+					tmp = const_cast<Module*>(*itp);
+				}
+				this->inst_mods[code] = true;
+				return ;
+			}
+		}
 	}
-	else
-	{
-		module = new Module(*(this->iModules[code]), NULL, this->win);
-	}
-	this->modules.push_back(*module);
 	this->inst_mods[code] = true;
+	if (this->modules.size())
+		module->setDimensions(h, w, this->modules.back()->getWindow(), this->win);
+	else
+		module->setDimensions(h, w, NULL, this->win);
+	this->modules.push_back(module);
+}
+
+std::list<Module*>::iterator	ShellDisplay::find(Module *module)
+{
+	std::list<Module*>::iterator it;
+	for (it = this->modules.begin(); it != this->modules.end(); ++it)
+	{
+		if (*(*it) == *module)
+			break;
+	}
+	return (it);
 }
 void						ShellDisplay::removeModule( char code )//IMonitorModule &imodule)
 {
 	Module									*modulefirst, *modulelast;
-	modulelast = new Module(*(this->iModules[code]), this->modules.back().getWindow(), this->win);
+	modulelast = new Module(*(this->iModules[code]), this->modules.back()->getWindow(), this->win);
 	modulefirst = new Module(*(this->iModules[code]), NULL, this->win);
-	std::list<Module>::iterator		it = std::find(this->modules.begin(), this->modules.end(), *modulefirst);
+	std::list<Module*>::iterator		it = this->find(modulefirst);
 	if (it != this->modules.end())
+	{
+		delete *it;
 		this->modules.erase(it);
+	}
 	else
 	{
-		it = std::find(this->modules.begin(), this->modules.end(), *modulelast);
+		it = this->find(modulelast);
 		if (it != this->modules.end())
+		{
+			delete *it;
 			this->modules.erase(it);
+		}
 	}
 	this->inst_mods[code] = false;
 	delete modulefirst;
 	delete modulelast;
+}
+
+int							ShellDisplay::getMaxHeight(void)
+{
+	int				ret = 0;
+
+	for (std::list<Module*>::const_iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+	{
+		if ((*it)->getHeight() > ret)
+			ret = (*it)->getHeight();
+	}
+	return (ret);
+}
+
+int							ShellDisplay::getMaxWidth(void)
+{
+	int				ret = 0;
+
+	for (std::list<Module*>::const_iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+	{
+		if ((*it)->getWidth() > ret)
+			ret = (*it)->getWidth();
+	}
+	return (ret);
 }
