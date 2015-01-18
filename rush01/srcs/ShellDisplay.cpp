@@ -47,7 +47,7 @@ void						ShellDisplay::draw(void) const
 	wrefresh(this->win);
 	for (std::list<Module>::const_iterator it = this->modules.begin(); it != this->modules.end(); ++it)
 	{
-		(*it).draw();
+		(*(const_cast<Module*>(&(*it)))).draw();
 	}
 }
 std::string const			&ShellDisplay::parseCommand( char code )

@@ -9,20 +9,24 @@
 class Module
 {
 	private:
-		IMonitorModule		*module;
-		WINDOW				*twin;
+		IMonitorModule					*module;
+		WINDOW							*twin;
+		std::string const				undefined;
+		std::vector<std::string>		data;
 	protected:
-		std::string const	undefined;
 	public:
 		Module(IMonitorModule&, WINDOW*, WINDOW*);
 		~Module(void);
-		void				draw(void) const;
+		void				draw(void);
+		int					getWidth(void) const;
+		int					getHeight(void) const;
 		WINDOW				*getWindow(void) const;
 		Module(Module const&);
 		Module				&operator=(Module const&);
 		bool				operator==(Module const&);
 		std::string const	&getName(void) const;
 		Module(void);
+		WINDOW				*initWindow(WINDOW*, WINDOW*);
 };
 
 #endif
