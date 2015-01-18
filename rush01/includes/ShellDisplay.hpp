@@ -12,11 +12,14 @@ class ShellDisplay : public IMonitorDisplay
 {
 	private:
 		WINDOW							*win;
-		std::list<Module>				modules;
+		std::list<Module*>				modules;
 		std::map<char,bool>				inst_mods;
 		std::map<char,IMonitorModule*>	iModules;
 		void							addModule(char);
 		void							removeModule(char);
+		int								getMaxHeight(void);
+		int								getMaxWidth(void);
+		std::list<Module*>::iterator	find(Module*);
 	protected:
 	public:
 		ShellDisplay(void);

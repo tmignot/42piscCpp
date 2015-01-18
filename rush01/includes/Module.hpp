@@ -13,6 +13,8 @@ class Module
 		WINDOW							*twin;
 		std::string const				undefined;
 		std::vector<std::string>		data;
+		int								w;
+		int								h;
 	protected:
 	public:
 		Module(IMonitorModule&, WINDOW*, WINDOW*);
@@ -27,6 +29,7 @@ class Module
 		std::string const	&getName(void) const;
 		Module(void);
 		WINDOW				*initWindow(WINDOW*, WINDOW*);
+		void				setDimensions(int, int, WINDOW*, WINDOW*);
 };
 
 #endif

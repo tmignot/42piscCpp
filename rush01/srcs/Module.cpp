@@ -1,9 +1,12 @@
 #include "Module.hpp"
 
-Module::Module(void) : module(NULL), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()){}
+Module::Module(void) : module(NULL), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0) {}
 
-Module::Module(IMonitorModule &module, WINDOW *lastwin, WINDOW *displaywin) : module(&module), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>())
+Module::Module(IMonitorModule &module, WINDOW *lastwin, WINDOW *displaywin) : module(&module), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0)
 {
+	this->data = this->module->getData();
+	this->w = this->getWidth();
+	this->h = this->getHeight();
 	twin = this->initWindow(lastwin, displaywin);
 }
 
@@ -77,9 +80,8 @@ int								Module::getWidth(void) const
 
 WINDOW							*Module::initWindow(WINDOW *lastwin, WINDOW *displaywin)
 {
-	this->data = this->module->getData();
-	int							w = this->getWidth() + 2;
-	int							h = data.size() + 2;
+	int							w = this->w + 2;
+	int							h = this->h + 2;
 	WINDOW						*local_win = NULL;
 	if (lastwin)
 	{
@@ -102,4 +104,16 @@ WINDOW							*Module::initWindow(WINDOW *lastwin, WINDOW *displaywin)
 		wrefresh(local_win);
 	}
 	return (local_win);
+}
+
+void							Module::setDimensions(int h, int w, WINDOW *lastwin, WINDOW *displaywin)
+{
+	this->h = h;
+	this->w = w;
+	WINDOW			*tmp = this->initWindow(lastwin, displaywin);
+	//wclear(this->twin);
+	//wborder(this->twin, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+	//wrefresh(this->twin);
+	delwin(this->twin);
+	this->twin = tmp;
 }
