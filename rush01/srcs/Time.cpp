@@ -1,6 +1,6 @@
 #include "Time.hpp"
 
-Time::Time(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
+Time::Time(void) : IMonitorModule(), type('i'), data(std::vector<std::string>()), name("Time")
 {
 	this->update();
 }
@@ -69,4 +69,9 @@ void							Time::update(void)
 		<< now->tm_min << 'm'
 		<< now->tm_sec << 's';
 	data.push_back(date.str());
+}
+
+std::string const				&Time::getName(void) const
+{
+	return (this->name);
 }

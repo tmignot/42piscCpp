@@ -1,6 +1,6 @@
 #include "RAM.hpp"
 
-RAM::RAM(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
+RAM::RAM(void) : IMonitorModule(), type('i'), data(std::vector<std::string>()), name("RAM")
 {
 	this->update();
 }
@@ -107,4 +107,9 @@ WINDOW							*RAM::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 char							RAM::getType(void) const
 {
 	return (this->type);
+}
+
+std::string const				&RAM::getName(void) const
+{
+	return (this->name);
 }

@@ -1,6 +1,6 @@
 #include "OS.hpp"
 
-OS::OS(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
+OS::OS(void) : IMonitorModule(), type('i'), data(std::vector<std::string>()), name("OS")
 {
 	this->update();
 }
@@ -64,4 +64,9 @@ int								OS::getWidth(void) const
 			ret = (*it).length();
 	}
 	return (ret);
+}
+
+std::string const						&OS::getName(void) const
+{
+	return (this->name);
 }

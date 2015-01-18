@@ -19,6 +19,7 @@ class IMonitorModule
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const = 0;
 		virtual char								getType(void) const = 0;
 		virtual void								update(void) = 0;
+		virtual std::string	const					&getName(void) const = 0;
 };
 
 #endif

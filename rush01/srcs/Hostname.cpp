@@ -1,7 +1,7 @@
 #include "Hostname.hpp"
 #include <iostream>
 
-Hostname::Hostname(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
+Hostname::Hostname(void) : IMonitorModule(), type('i'), data(std::vector<std::string>()), name("Hostname")
 {
 	this->update();
 }
@@ -81,4 +81,9 @@ WINDOW									*Hostname::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 char									Hostname::getType(void) const
 {
 	return (this->type);
+}
+
+std::string const						&Hostname::getName(void) const
+{
+	return (this->name);
 }

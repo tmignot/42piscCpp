@@ -1,23 +1,27 @@
 #include "GKrellM.hpp"
 
-
 void		myexit( IMonitorDisplay *mon )
 {
 	if (mon)
 		delete mon;
-	exit(0);
 }
 
-std::string		keyEvent( IMonitorDisplay *mon ){
+std::string		keyEvent( IMonitorDisplay *mon, bool &running ){
 	timeout(0);
 	int  ch;
 	while ((ch = getch()) != ERR) {
 		switch (ch) {
+			case 'h':
+			case 'c':
+			case 't':
 			case 'o':
-				mon->addModule('o');
-				return "haut";
+			case 'r':
+			case 'n':
+				mon->parseCommand(ch);
+				break;
 			case ' ':
 				myexit( mon );
+				running = false;
 				return "sp";
 			case 27:	// escape
 				if (getch() == -1)
@@ -30,7 +34,6 @@ std::string		keyEvent( IMonitorDisplay *mon ){
 	return "je met ce que je veux!";
 }
 
-
 int		main(int ac, char **av)
 {
 	IMonitorDisplay		*monitor = NULL;
@@ -39,21 +42,20 @@ int		main(int ac, char **av)
 	if (options.shell())
 	{
 		monitor = new ShellDisplay();
-		monitor->addModule('t');
-		monitor->addModule('h');
-		monitor->addModule('c');
-		monitor->addModule('o');
 		monitor->draw();
-		while ( 1 )
+		bool running = true;
+		while ( running )
 		{
-			keyEvent( monitor );
+			keyEvent( monitor, running );
+			if (!running)
+				break;
 			monitor->draw();
-			sleep(1);
+			usleep(100000);
 		}
 	}
 	else if (options.windowed())
 		monitor = new WindowedDisplay();
 	else
 		options.printErrors();
-	myexit(monitor);
+	return 0;
 }

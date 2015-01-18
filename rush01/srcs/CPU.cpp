@@ -1,6 +1,6 @@
 #include "CPU.hpp"
 
-CPU::CPU(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
+CPU::CPU(void) : IMonitorModule(), type('i'), data(std::vector<std::string>()), name("CPU")
 {
 	for (unsigned int i = 0; i < 4; ++i) {
 		totaltime[i][0] = totaltime[i][1] = 0;
@@ -31,7 +31,7 @@ void							CPU::update(void)
 	data.push_back("   CPU load:");
 	for (unsigned int i = 0; i < cpu_count; ++i) {
 		std::ostringstream sstr2;
-		totaltime[i][0] = cpu_load[i].cpu_ticks[CPU_STATE_USER] +
+		totaltime[i][0] = cpu_load[i].cpu_ticks[CPU_STATE_USER]+
 						  cpu_load[i].cpu_ticks[CPU_STATE_SYSTEM];
 		sstr2 << "   [" << i << "]: " << (totaltime[i][0] - totaltime[i][1]) << "%%  ";
 		data.push_back(sstr2.str());
@@ -82,4 +82,9 @@ WINDOW							*CPU::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 char							CPU::getType(void) const
 {
 	return (this->type);
+}
+
+std::string const				&CPU::getName(void) const
+{
+	return (this->name);
 }

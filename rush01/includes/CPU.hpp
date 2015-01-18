@@ -12,6 +12,7 @@ class CPU : public IMonitorModule
 	private:
 		char										type;
 		std::vector<std::string>					data;
+		std::string									name;
 		int											getWidth(void) const;
 		unsigned int								cpu_count;
 		processor_cpu_load_info_t					cpu_load;
@@ -28,6 +29,7 @@ class CPU : public IMonitorModule
 		virtual std::vector<std::string> const		&getData(void) const;
 		virtual char								getType(void) const;
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
+		virtual std::string const					&getName(void) const;
 };
 
 #endif

@@ -12,6 +12,7 @@ class Hostname : public IMonitorModule
 		char										type;
 		std::vector<std::string>					data;
 		int 										getWidth(void) const;
+		std::string									name;
 	protected:
 	public:
 		Hostname(void);
@@ -23,6 +24,7 @@ class Hostname : public IMonitorModule
 		virtual WINDOW								*initWindow(WINDOW*, WINDOW*) const;
 		virtual char								getType(void) const;
 		virtual void								update(void);
+		virtual std::string const					&getName(void) const;
 };
 
 #endif

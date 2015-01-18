@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "ShellDisplay.hpp"
 #include "WindowedDisplay.hpp"
 #include "Options.hpp"

@@ -1,6 +1,6 @@
 #include "Network.hpp"
 
-Network::Network(void) : IMonitorModule(), type('i'), data(std::vector<std::string>())
+Network::Network(void) : IMonitorModule(), type('i'), data(std::vector<std::string>()), name("Network")
 {
 	this->update();
 }
@@ -112,4 +112,9 @@ WINDOW							*Network::initWindow(WINDOW *lastwin, WINDOW *displaywin) const
 char							Network::getType(void) const
 {
 	return (this->type);
+}
+
+std::string const				&Network::getName(void) const
+{
+	return (this->name);
 }
