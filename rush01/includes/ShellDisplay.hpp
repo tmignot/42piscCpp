@@ -20,6 +20,7 @@ class ShellDisplay : public IMonitorDisplay
 		int								getMaxHeight(void);
 		int								getMaxWidth(void);
 		std::list<Module*>::iterator	find(Module*);
+		bool							blocFree(int);
 	protected:
 	public:
 		ShellDisplay(void);

@@ -66,7 +66,7 @@ std::string const			&ShellDisplay::parseCommand( char code )
 void						ShellDisplay::addModule( char code )//IMonitorModule &imodule)
 {
 	Module			*module;
-	module = new Module(*(this->iModules[code]), NULL, this->win);
+	module = new Module(*(this->iModules[code]), NULL, this->win, 0);
 	int			h = (module->getHeight() > this->getMaxHeight() ? module->getHeight() : this->getMaxHeight()), w = (module->getWidth() > this->getMaxWidth() ? module->getWidth() : this->getMaxWidth());
 	if (this->modules.size())
 	{
@@ -82,24 +82,13 @@ void						ShellDisplay::addModule( char code )//IMonitorModule &imodule)
 				tmp = const_cast<Module*>(*it);
 			}
 		}
-		for (std::list<Module*>::iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+		int i;
+		for (i = 0; i < 100 ; i++)
 		{
-			if (getbegy((*it)->getWindow()) - h > getbegy(this->win) + 1)
-			{
-				this->modules.insert(it, module);
-				Module		*tmp = NULL;
-				for (std::list<Module*>::iterator itp = this->modules.begin(); itp != this->modules.end(); ++itp)
-				{
-					if (tmp)
-						((*itp))->setDimensions(h, w, tmp->getWindow(), this->win);
-					else
-						((*itp))->setDimensions(h, w, NULL, this->win);
-					tmp = const_cast<Module*>(*itp);
-				}
-				this->inst_mods[code] = true;
-				return ;
-			}
+			if (this->blocFree(i))
+				break;
 		}
+		module->setBlocP(i);
 	}
 	this->inst_mods[code] = true;
 	if (this->modules.size())
@@ -107,6 +96,16 @@ void						ShellDisplay::addModule( char code )//IMonitorModule &imodule)
 	else
 		module->setDimensions(h, w, NULL, this->win);
 	this->modules.push_back(module);
+}
+
+bool							ShellDisplay::blocFree(int b)
+{
+	for(std::list<Module*>::iterator it = this->modules.begin(); it != this->modules.end(); ++it)
+	{
+		if ((*it)->getBlocP() == b)
+			return false;
+	}
+	return true;
 }
 
 std::list<Module*>::iterator	ShellDisplay::find(Module *module)
@@ -122,8 +121,8 @@ std::list<Module*>::iterator	ShellDisplay::find(Module *module)
 void						ShellDisplay::removeModule( char code )//IMonitorModule &imodule)
 {
 	Module									*modulefirst, *modulelast;
-	modulelast = new Module(*(this->iModules[code]), this->modules.back()->getWindow(), this->win);
-	modulefirst = new Module(*(this->iModules[code]), NULL, this->win);
+	modulelast = new Module(*(this->iModules[code]), this->modules.back()->getWindow(), this->win, 0);
+	modulefirst = new Module(*(this->iModules[code]), NULL, this->win, 0);
 	std::list<Module*>::iterator		it = this->find(modulefirst);
 	if (it != this->modules.end())
 	{

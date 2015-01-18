@@ -1,8 +1,8 @@
 #include "Module.hpp"
 
-Module::Module(void) : module(NULL), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0) {}
+Module::Module(void) : module(NULL), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0), blocp(0) {}
 
-Module::Module(IMonitorModule &module, WINDOW *lastwin, WINDOW *displaywin) : module(&module), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0)
+Module::Module(IMonitorModule &module, WINDOW *lastwin, WINDOW *displaywin, int blocp) : module(&module), twin(NULL), undefined("UNDEFINED"), data(std::vector<std::string>()), w(0), h(0), blocp(blocp)
 {
 	this->data = this->module->getData();
 	this->w = this->getWidth();
@@ -83,21 +83,15 @@ WINDOW							*Module::initWindow(WINDOW *lastwin, WINDOW *displaywin)
 	int							w = this->w + 2;
 	int							h = this->h + 2;
 	WINDOW						*local_win = NULL;
-	if (lastwin)
+	int							blocp = this->blocp, column = 0;
+	lastwin = lastwin;
+	while (blocp * this->h + h > getbegy(displaywin) + getmaxy(displaywin) - 2)
 	{
-		if (getbegy(lastwin) + getmaxy(lastwin) + h + 1 < getbegy(displaywin) + getmaxy(displaywin))
-		{
-			if (getbegx(lastwin) + 1 + w < getbegx(displaywin) + getmaxx(displaywin))
-				local_win = newwin(h, w, getbegy(displaywin) + getbegy(lastwin) + getmaxy(lastwin), getbegx(displaywin) + getbegx(lastwin));
-		}
-		else
-		{
-			if (getbegx(lastwin) + getmaxx(lastwin) + 1 + w < getbegx(displaywin) + getmaxx(displaywin))
-				local_win = newwin(h, w, getbegy(displaywin) + 1, getbegx(displaywin) + getbegx(lastwin) + getmaxx(lastwin) + 1);
-		}
+		blocp -= (getbegy(displaywin) + getmaxy(displaywin)) / this->h;
+		column++;
 	}
-	else
-		local_win = newwin(h, w, getbegy(displaywin) + 1, getbegx(displaywin) + 1);
+	if (column * this->w + w < getbegx(displaywin) + getmaxx(displaywin) - 2)
+		local_win = newwin(h, w, blocp * h + 1, column * w + 1);
 	if (local_win)
 	{
 		box(local_win, 0, 0);
@@ -113,4 +107,13 @@ void							Module::setDimensions(int h, int w, WINDOW *lastwin, WINDOW *displayw
 	WINDOW			*tmp = this->initWindow(lastwin, displaywin);
 	delwin(this->twin);
 	this->twin = tmp;
+}
+ void							Module::setBlocP(int b)
+{
+	this->blocp = b;
+}
+
+int								Module::getBlocP(void)
+{
+	return (this->blocp);
 }
