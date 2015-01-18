@@ -151,3 +151,7 @@ int							ShellDisplay::getMaxWidth(void)
 	}
 	return (ret);
 }
+
+void						ShellDisplay::printMiddle(WINDOW *win, int y, std::string const & s) {
+	mvwprintw(win, y, (getmaxx(win) - s.size()) / 2, s.c_str());
+}

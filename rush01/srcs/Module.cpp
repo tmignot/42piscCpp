@@ -40,7 +40,7 @@ void					Module::draw(void)
 		box(this->twin, 0, 0);
 		for (unsigned int i = 0; i < this->data.size(); ++i)
 		{
-			mvwprintw(this->twin, i + 1, 1, this->data[i].c_str());
+			printMiddle(this->twin, i + 1, this->data[i]);
 		}
 		wrefresh(this->twin);
 	}
@@ -116,4 +116,8 @@ void							Module::setDimensions(int h, int w, WINDOW *lastwin, WINDOW *displayw
 	//wrefresh(this->twin);
 	delwin(this->twin);
 	this->twin = tmp;
+}
+
+void						Module::printMiddle(WINDOW *win, int y, std::string const & s) const{
+	mvwprintw(win, y, (getmaxx(win) - s.size()) / 2, s.c_str());
 }

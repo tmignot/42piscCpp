@@ -30,6 +30,7 @@ class Module
 		Module(void);
 		WINDOW				*initWindow(WINDOW*, WINDOW*);
 		void				setDimensions(int, int, WINDOW*, WINDOW*);
+		void				printMiddle(WINDOW *, int, std::string const &) const;
 };
 
 #endif
