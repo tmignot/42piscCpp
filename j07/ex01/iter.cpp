@@ -2,9 +2,10 @@
 #include <string>
 
 template<class T>
+
 void			displayFour(T s)
 {
-	char		*str = (char*)(s.c_str());
+	char		*str = const_cast<char*>(s.c_str());
 
 	if (s.length() > 4)
 		str[4] = '\0';
@@ -27,34 +28,15 @@ void			iter(T *array, size_t size, U (*f)(T))
 
 int				main(void)
 {
-	int			intArray[10] = 
+	int			intArray[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8,	9 };
+
+	std::string	stringArray[13] =
 	{
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9
+		"this",	"is", "a", "long", "fucking", "string", "array",
+		"does",	"this",	"never", "end",	"or", "what ?"
 	};
-	std::string	stringArray[11] =
-	{
-		"this",
-		"is",
-		"a",
-		"long",
-		"fucking",
-		"string",
-		"array",
-		"does",
-		"this",
-		"never",
-		"end ?"
-	};
+
 	::iter(intArray, 10, &doubleUp);
-	::iter(stringArray, 11, &displayFour<std::string>);
+	::iter(stringArray, 13, &displayFour<std::string>);
 	return (0);
 }

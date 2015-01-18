@@ -2,6 +2,10 @@
 # define NETWORK_HPP
 
 #include "IMonitorModule.hpp"
+#include <net/route.h>
+#include <net/if.h>
+#include <sys/sysctl.h>
+#include <sstream>
 
 class Network : public IMonitorModule
 {

@@ -2,6 +2,9 @@
 # define RAM_HPP
 
 #include "IMonitorModule.hpp"
+#include <sys/sysctl.h>
+#include <mach/mach.h>
+#include <sstream>
 
 class RAM : public IMonitorModule
 {

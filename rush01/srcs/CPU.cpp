@@ -24,10 +24,6 @@ void							CPU::update(void)
 						reinterpret_cast<processor_info_array_t*>(&cpu_load),		
 						&cpu_msg_count);
 
-	unsigned int per_temps_count;
-	host_processor_info(mach_host_self(), PROCESSOR_TEMPERATURE,
-						&cpu_count, reinterpret_cast<int**>(&temp), &per_temps_count);
-
 	std::ostringstream sstr;
 
 	sstr << "      CPUs: " << cpu_count;
