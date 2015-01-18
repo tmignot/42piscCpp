@@ -26,9 +26,9 @@ SILENCE_1 :=
 SILENCE_0 :=@
 SILENCE = $(SILENCE_$(V))
 LNAME = $(addprefix lib, $(LIBNAME))
-CLNAME = $(addprefix -l, $(LIBNAME)) -lncurses
-LIB = $(addprefix -L, $(addsuffix /, $(LNAME))) $(CLNAME)
-LINCLUDE =
+CLNAME = $(addprefix -l, $(LIBNAME)) -lncurses -lSDL2 -lSDL2_ttf
+LIB = $(addprefix -L, $(addsuffix /, $(LNAME)) lib/SDL2/lib lib/SDL2_ttf/lib) $(CLNAME)
+LINCLUDE = lib/SDL2/include lib/SDL2_ttf/include lib/SDL2/include/SDL2
 CC = $(SILENCE)g++
 RM = $(SILENCE)rm -rf
 MAKE = $(SILENCE)make V=$(V)
