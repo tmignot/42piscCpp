@@ -111,9 +111,6 @@ void							Module::setDimensions(int h, int w, WINDOW *lastwin, WINDOW *displayw
 	this->h = h;
 	this->w = w;
 	WINDOW			*tmp = this->initWindow(lastwin, displaywin);
-	//wclear(this->twin);
-	//wborder(this->twin, ' ', ' ', ' ',' ',' ',' ',' ',' ');
-	//wrefresh(this->twin);
 	delwin(this->twin);
 	this->twin = tmp;
 }
