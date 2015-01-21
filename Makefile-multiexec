@@ -1,0 +1,118 @@
+#******************************************************************************#
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jwoodrow <jwoodrow@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2013/12/30 13:57:53 by jwoodrow          #+#    #+#              #
+#    Updated: 2014/02/07 21:02:26 by jwoodrow         ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
+
+NAME1 = serveur
+NAME2 = client
+LIBNAME =
+C1 = \033[0;36m
+C2 = \033[0;33m
+CFLAGS = -g3 -03 -Wall -Werror -Wextra
+SRCPATH = ./srcs/
+INCLUDE = ./includes
+SRCS1 = serveur.c\
+		serveur_signal.c\
+		ft_strdup.c\
+		ft_reallocstr.c\
+		ft_putendl.c
+
+SRCS2 = client.c \
+		ft_atoi.c \
+		ft_special_char.c
+
+
+V = 0
+SILENCE_1 :=
+SILENCE_0 :=@
+SILENCE = $(SILENCE_$(V))
+LNAME = $(addprefix lib, $(LIBNAME))
+CLNAME = $(addprefix -l, $(LIBNAME))
+LIB = $(addprefix -L, $(addsuffix /, $(LNAME))) $(CLNAME)
+LINCLUDE = $(addsuffix /includes/, $(LNAME))
+CC = $(SILENCE)gcc
+RM = $(SILENCE)rm -rf
+MAKE = $(SILENCE)make V=$(V)
+INCLUDES = -I $(INCLUDE) $(addprefix -I, $(LINCLUDE))
+SRC1 = $(addprefix $(SRCPATH), $(SRCS1))
+SRC2 = $(addprefix $(SRCPATH), $(SRCS2))
+OBJS1 = $(SRCS1:.c=.o)
+OBJS2 = $(SRCS2:.c=.o)
+SKIP_1 :=
+SKIP_0 := \033[A
+SKIP = $(SKIP_$(V))
+U1 = $(C1)[$(NAME1)]----->\033[0m
+U2 = $(C2)[$(NAME2)]----->\033[0m
+OBJDIR1 = $(addprefix obj1/, $(OBJS1))
+OBJDIR2 = $(addprefix obj2/, $(OBJS2))
+
+all: createdir $(NAME1) $(NAME2)
+
+$(NAME1): $(OBJDIR1)
+	@echo "$(U1)$(C1)[COMPILE:\033[1;32m DONE$(C1)]\033[0m"
+	@echo "$(U1)$(C1)[BUILD]\033[0;32m"
+	$(CC) -o $@ $(OBJDIR1) $(CFLAGS) $(INCLUDES) $(LIB)
+	@echo "$(SKIP)\033[2K"
+	@echo "$(SKIP)$(U1)$(C1)[BUILD  :\033[1;32m DONE$(C1)]\033[0m"
+
+$(NAME2): $(OBJDIR2)
+	@echo "$(U2)$(C2)[COMPILE:\033[1;32m DONE$(C2)]\033[0m"
+	@echo "$(U2)$(C2)[BUILD]\033[0;32m"
+	$(CC) -o $@ $(OBJDIR2) $(CFLAGS) $(INCLUDES) $(LIB)
+	@echo "$(SKIP)\033[2K"
+	@echo "$(SKIP)$(U2)$(C2)[BUILD  :\033[1;32m DONE$(C2)]\033[0m"
+
+obj1/%.o: srcs/%.c
+	@echo "$(U1)$(C1)[COMPILE: \033[1;31m$<\033[A\033[0m"
+	@echo "\033[0;32m"
+	$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
+	@echo "\033[1;31m [.working.]"
+	@echo "$(SKIP)\033[2K\033[A\033[2K$(SKIP)"
+
+obj2/%.o: srcs/%.c
+	@echo "$(U2)$(C2)[COMPILE: \033[1;31m$<\033[A\033[0m"
+	@echo "\033[0;32m"
+	$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
+	@echo "\033[1;31m [.working.]"
+	@echo "$(SKIP)\033[2K\033[A\033[2K$(SKIP)"
+
+clean1:
+	@echo "$(U1)$(C1)[CLEAN]\033[0;32m"
+	$(RM) $(OBJS1)
+	@echo "$(SKIP)$(U1)$(C1)[CLEAN:\033[1;32m   DONE$(C1)]\033[0m"
+
+clean2:
+	@echo "$(U2)$(C2)[CLEAN]\033[0;32m"
+	$(RM) $(OBJS2)
+	@echo "$(SKIP)$(U2)$(C2)[CLEAN:\033[1;32m   DONE$(C2)]\033[0m"
+
+clean: clean1 clean2
+
+fclean1: clean1
+	@echo "$(U1)$(C1)[F-CLEAN]\033[0;32m"
+	$(RM) $(NAME1)
+	$(RM) obj1
+	@echo "$(SKIP)$(U1)$(C1)[F-CLEAN:\033[1;32m DONE$(C1)]\033[0m"
+
+fclean2: clean2
+	@echo "$(U2)$(C2)[F-CLEAN]\033[0;32m"
+	$(RM) $(NAME2)
+	$(RM) obj2
+	@echo "$(SKIP)$(U2)$(C2)[F-CLEAN:\033[1;32m DONE$(C2)]\033[0m"
+
+fclean: fclean1 fclean2
+
+createdir:
+	@mkdir -p obj1
+	@mkdir -p obj2
+
+re: fclean all
+
+.PHONY: all clean clean1 clean2 fclean fclean1 fclean2 createdir
